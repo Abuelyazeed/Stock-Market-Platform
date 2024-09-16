@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinPulse", "FinPulse\FinPulse.csproj", "{2B568C46-8E73-419D-B330-2B805E0E8D37}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinPulse.DAL", "FinPulse.DAL\FinPulse.DAL.csproj", "{F39D7C5A-B5F3-4B13-810B-7DC925A2B7E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinPulse.BL", "FinPulse.BL\FinPulse.BL.csproj", "{7C87D941-BDDA-46F7-96D1-C983FD92342A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{2B568C46-8E73-419D-B330-2B805E0E8D37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B568C46-8E73-419D-B330-2B805E0E8D37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B568C46-8E73-419D-B330-2B805E0E8D37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F39D7C5A-B5F3-4B13-810B-7DC925A2B7E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F39D7C5A-B5F3-4B13-810B-7DC925A2B7E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F39D7C5A-B5F3-4B13-810B-7DC925A2B7E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F39D7C5A-B5F3-4B13-810B-7DC925A2B7E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C87D941-BDDA-46F7-96D1-C983FD92342A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C87D941-BDDA-46F7-96D1-C983FD92342A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C87D941-BDDA-46F7-96D1-C983FD92342A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C87D941-BDDA-46F7-96D1-C983FD92342A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
