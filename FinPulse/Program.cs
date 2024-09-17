@@ -1,15 +1,34 @@
+using FinPulse.DAL.Data.Context;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+#region Default Services
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+#endregion
+
+#region Database
+
+builder.Services.AddDbContext<FinPulseContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+#endregion
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
+#region Middlewares
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -21,5 +40,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+#endregion
 
 app.Run();

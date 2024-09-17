@@ -4,9 +4,21 @@
     <projectFile profileName="http">FinPulse/FinPulse.csproj</projectFile>
     <projectFile profileName="https">FinPulse/FinPulse.csproj</projectFile>
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="b26f06ac-6a19-4e6d-920d-e3b1764a6295" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/FinPulse.sln" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.sln" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FinPulse.DAL/Data/Context/FinPulseContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FinPulse.DAL/Data/Models/Comment.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FinPulse.DAL/Data/Models/Stock.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.FinPulse/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FinPulse/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse.BL/FinPulse.BL.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.BL/FinPulse.BL.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/FinPulse.DAL.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.DAL/FinPulse.DAL.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse/FinPulse.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse/FinPulse.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +27,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/Desktop/MVC ITI/API-Day2/APIs.DayTwo/APIs.DayTwo/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Desktop/MVC ITI/API-Day2/APIs.DayTwo/Hospital.System.DAL/Data/Context/HospitalContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Hospital.System/Hospital.System.APIs/Program.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 8
@@ -76,7 +93,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726503391342</updated>
-      <workItem from="1726503394090" duration="306000" />
+      <workItem from="1726503394090" duration="3975000" />
     </task>
     <servers />
   </component>
@@ -84,6 +101,23 @@
     <option name="version" value="3" />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="false" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
