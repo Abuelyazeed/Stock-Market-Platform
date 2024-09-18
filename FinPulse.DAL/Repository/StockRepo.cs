@@ -1,5 +1,3 @@
-using FinPulse.DAL.Data.Context;
-
 namespace FinPulse.DAL;
 
 public class StockRepo : IStockRepo
@@ -10,6 +8,20 @@ public class StockRepo : IStockRepo
     {
         _context = context;
     }
-    
-    
+
+
+    public List<Stock> GetAllStocks()
+    {
+        return _context.Stocks.ToList();
+    }
+
+    public Stock? GetStockById(Guid id)
+    {
+        return _context.Stocks.FirstOrDefault(x => x.Id == id);
+    }
+
+    public int SaveChanges()
+    {
+        return _context.SaveChanges();
+    }
 }

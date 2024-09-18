@@ -1,17 +1,14 @@
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FinPulse.DAL;
 
-public class Stock
+namespace FinPulse.BL;
+
+public class StockReadDto
 {
     public Guid Id { get; set; }
     public string Symbol { get; set; } = string.Empty;
     public string CompanyName { get; set; } = string.Empty;
-    [Column(TypeName = "decimal(18, 2)")]
     public decimal Purchase { get; set; }
-    [Column(TypeName = "decimal(18, 2)")]
     public decimal LastDiv { get; set; }
     public string Industry { get; set; } = string.Empty;
     public long MarketCap { get; set; }
-    public List<Comment> Comments { get; set; } = new List<Comment>();
 }

@@ -1,7 +1,6 @@
-using FinPulse.DAL.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace FinPulse.DAL.Data.Context;
+namespace FinPulse.DAL;
 
 public class FinPulseContext : DbContext
 {

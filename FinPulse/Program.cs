@@ -1,6 +1,5 @@
 using FinPulse.BL;
 using FinPulse.DAL;
-using FinPulse.DAL.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

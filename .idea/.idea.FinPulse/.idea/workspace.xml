@@ -9,13 +9,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b26f06ac-6a19-4e6d-920d-e3b1764a6295" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/FinPulse.BL/Managers/IStockManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinPulse.BL/Managers/StockManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinPulse.DAL/Repository/IStockRepo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinPulse.DAL/Repository/StockRepo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FinPulse.BL/Dtos/Stock/StockReadDto.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FinPulse/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FinPulse/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FinPulse.BL/FinPulse.BL.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.BL/FinPulse.BL.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse/FinPulse.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse/FinPulse.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse.BL/Managers/IStockManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.BL/Managers/IStockManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse.BL/Managers/StockManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.BL/Managers/StockManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Data/Context/FinPulseContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.DAL/Data/Context/FinPulseContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Data/Models/Comment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.DAL/Data/Models/Comment.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Data/Models/Stock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.DAL/Data/Models/Stock.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Migrations/20240917202656_InitialCreate.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Migrations/20240917202656_InitialCreate.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Migrations/FinPulseContextModelSnapshot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Repository/IStockRepo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.DAL/Repository/IStockRepo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Repository/StockRepo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.DAL/Repository/StockRepo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse/Controllers/StockController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse/Controllers/StockController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FinPulse/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,14 +30,29 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DpaMonitoringSettings">
+    <option name="autoShow" value="false" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$USER_HOME$/Desktop/MVC ITI/API-Day2/APIs.DayTwo/APIs.DayTwo/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/MVC ITI/API-Day2/APIs.DayTwo/Hospital.System.DAL/Data/Context/HospitalContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Desktop/Web Api/API/Controllers/StocksController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Desktop/Web Api/API/DTOs/StockDto.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Desktop/Web Api/API/Data/ApplicationDbContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Desktop/Web Api/API/Mappers/StockMappers.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Desktop/Web Api/API/Models/Comment.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Desktop/Web Api/API/Models/Stock.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Desktop/Web Api/API/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../APIs.DayOne/APIs.DayOne/Controllers/MobilesController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../APIs.DayOne/APIs.DayOne/Controllers/ShopsController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Hospital.System/Hospital.System.APIs/Controllers/PatientsController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Hospital.System/Hospital.System.APIs/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Hospital.System/Hospital.System.BL/Managers/Patients/IPatientsManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Hospital.System/Hospital.System.BL/Managers/Patients/PatientsManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Hospital.System/Hospital.System.DAL/Repo/Patients/IPatientsRepo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Hospital.System/Hospital.System.DAL/Repo/Patients/PatientsRepo.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
@@ -43,6 +65,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    ".NET Launch Settings Profile.FinPulse: http.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
@@ -93,7 +116,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726503391342</updated>
-      <workItem from="1726503394090" duration="5255000" />
+      <workItem from="1726503394090" duration="8083000" />
     </task>
     <servers />
   </component>
