@@ -1,3 +1,5 @@
+using FinPulse.BL;
+using FinPulse.DAL;
 using FinPulse.DAL.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,6 +22,18 @@ builder.Services.AddDbContext<FinPulseContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+#endregion
+
+#region Repos
+
+builder.Services.AddScoped<IStockRepo, StockRepo>();
+
+#endregion
+
+#region Managers
+
+builder.Services.AddScoped<IStockManager, StockManager>();
 
 #endregion
 
