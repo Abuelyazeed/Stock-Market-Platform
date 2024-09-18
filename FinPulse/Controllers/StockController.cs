@@ -10,7 +10,7 @@ namespace FinPulse.Controllers
     public class StockController : ControllerBase
     {
         private readonly IStockManager _stockManager;
-        public StockController(StockManager stockManager)
+        public StockController(IStockManager stockManager)
         {
             _stockManager = stockManager;
         }
