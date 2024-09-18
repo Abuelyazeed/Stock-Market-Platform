@@ -32,7 +32,7 @@ public class StockManager : IStockManager
 
     public StockReadDto? GetStockById(Guid id)
     {
-        Stock stock = _stockRepo.GetStockById(id);
+        Stock? stock = _stockRepo.GetStockById(id);
 
         return new StockReadDto()
         {
@@ -44,5 +44,37 @@ public class StockManager : IStockManager
             Industry = stock.Industry,
             MarketCap = stock.MarketCap,
         };
+    }
+
+    public void CreateStock(StockCreateDto stockToCreate)
+    {
+        Stock stock = new Stock()
+        {
+            Id = Guid.NewGuid(),
+            Symbol = stockToCreate.Symbol,
+            CompanyName = stockToCreate.CompanyName,
+            Purchase = stockToCreate.Purchase,
+            LastDiv = stockToCreate.LastDiv,
+            Industry = stockToCreate.Industry,
+            MarketCap = stockToCreate.MarketCap
+
+        };
+        _stockRepo.CreateStock(stock);
+        _stockRepo.SaveChanges();
+    }
+
+    public bool UpdateStock(StockUpdateDto stockUpdateDto,Guid id)
+    {
+        Stock? stock = _stockRepo.GetStockById(id);
+        
+        stock.Symbol = stockUpdateDto.Symbol;
+        stock.CompanyName = stockUpdateDto.CompanyName;
+        stock.Purchase = stockUpdateDto.Purchase;
+        stock.LastDiv = stockUpdateDto.LastDiv;
+        stock.Industry = stockUpdateDto.Industry;
+        stock.MarketCap = stockUpdateDto.MarketCap;
+        
+        int numberOfAffectedRows = _stockRepo.SaveChanges();
+        return numberOfAffectedRows > 0;
     }
 }

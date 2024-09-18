@@ -20,6 +20,17 @@ public class StockRepo : IStockRepo
         return _context.Stocks.FirstOrDefault(x => x.Id == id);
     }
 
+    public void CreateStock(Stock stock)
+    {
+        _context.Stocks.Add(stock);
+    }
+
+    public void UpdateStock(Stock stock)
+    {
+       // _context.Update(stock);
+    }
+
+
     public int SaveChanges()
     {
         return _context.SaveChanges();

@@ -9,8 +9,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b26f06ac-6a19-4e6d-920d-e3b1764a6295" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Data/Context/FinPulseContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.DAL/Data/Context/FinPulseContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Migrations/FinPulseContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.DAL/Migrations/FinPulseContextModelSnapshot.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FinPulse.BL/Dtos/Stock/StockCreateDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FinPulse.BL/Dtos/Stock/StockUpdateDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.FinPulse/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FinPulse/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse.BL/Managers/IStockManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.BL/Managers/IStockManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse.BL/Managers/StockManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.BL/Managers/StockManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Repository/IStockRepo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.DAL/Repository/IStockRepo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Repository/StockRepo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.DAL/Repository/StockRepo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse/Controllers/StockController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse/Controllers/StockController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +30,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/Desktop/MVC ITI/API-Day2/APIs.DayTwo/APIs.DayTwo/Controllers/PatientsController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/MVC ITI/API-Day2/APIs.DayTwo/APIs.DayTwo/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/MVC ITI/API-Day2/APIs.DayTwo/Hospital.System.DAL/Data/Context/HospitalContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Desktop/MVC ITI/API-Day2/APIs.DayTwo/Hospital.System.DAL/Repos/Patients/PatientsRepo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Desktop/MVC ITI/Day4/Day4.Hospital.BL/Managers/Doctors/DoctorsManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Desktop/MVC ITI/Day4/Day4.Hospital.DAL/Repositories/Doctors/DoctorsRepo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Desktop/MVC ITI/Day4/Day4.Hospital.DAL/Repositories/Doctors/IDoctorsRepo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Desktop/MVC ITI/Day4/Day4.Hospital.MVC/Controllers/DoctorsController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/Web Api/API/Controllers/StocksController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/Web Api/API/DTOs/StockDto.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Desktop/Web Api/API/Data/ApplicationDbContext.cs" root0="SKIP_HIGHLIGHTING" />
@@ -103,7 +115,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726503391342</updated>
-      <workItem from="1726503394090" duration="8387000" />
+      <workItem from="1726503394090" duration="13168000" />
     </task>
     <servers />
   </component>
