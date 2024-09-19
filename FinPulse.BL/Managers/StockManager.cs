@@ -11,9 +11,9 @@ public class StockManager : IStockManager
         _stockRepo = stockRepo;
     }
 
-    public List<StockReadDto> GetAllStocks()
+    public async Task<List<StockReadDto>> GetAllStocks()
     {
-        List<Stock> stocks = _stockRepo.GetAllStocks();
+        List<Stock> stocks = await _stockRepo.GetAllStocks();
         
         //List to List
         List<StockReadDto> stockReadDtos = stocks.Select(stock => new StockReadDto
@@ -30,9 +30,9 @@ public class StockManager : IStockManager
         return stockReadDtos;
     }
 
-    public StockReadDto? GetStockById(Guid id)
+    public async Task<StockReadDto?> GetStockById(Guid id)
     {
-        Stock? stock = _stockRepo.GetStockById(id);
+        Stock? stock = await _stockRepo.GetStockById(id);
         if (stock == null) return null;
 
         return new StockReadDto()
@@ -47,7 +47,7 @@ public class StockManager : IStockManager
         };
     }
 
-    public void CreateStock(StockCreateDto stockToCreate)
+    public async Task CreateStock(StockCreateDto stockToCreate)
     {
         Stock stock = new Stock()
         {
@@ -60,13 +60,13 @@ public class StockManager : IStockManager
             MarketCap = stockToCreate.MarketCap
 
         };
-        _stockRepo.CreateStock(stock);
-        _stockRepo.SaveChanges();
+        await _stockRepo.CreateStock(stock);
+        await _stockRepo.SaveChanges();
     }
 
-    public bool UpdateStock(StockUpdateDto stockUpdateDto,Guid id)
+    public async Task<bool> UpdateStock(StockUpdateDto stockUpdateDto,Guid id)
     {
-        Stock? stock = _stockRepo.GetStockById(id);
+        Stock? stock = await _stockRepo.GetStockById(id);
         if (stock == null) return false;
         
         stock.Symbol = stockUpdateDto.Symbol;
@@ -76,17 +76,17 @@ public class StockManager : IStockManager
         stock.Industry = stockUpdateDto.Industry;
         stock.MarketCap = stockUpdateDto.MarketCap;
         
-        int numberOfAffectedRows = _stockRepo.SaveChanges();
+        int numberOfAffectedRows = await _stockRepo.SaveChanges();
         return numberOfAffectedRows > 0;
     }
 
-    public bool DeleteStock(Guid id)
+    public async Task<bool> DeleteStock(Guid id)
     {
-        Stock? stock = _stockRepo.GetStockById(id);
+        Stock? stock = await _stockRepo.GetStockById(id);
         if (stock == null) return false;
         
         _stockRepo.DeleteStock(stock);
-        _stockRepo.SaveChanges();
+        await _stockRepo.SaveChanges();
         return true;
     }
 }

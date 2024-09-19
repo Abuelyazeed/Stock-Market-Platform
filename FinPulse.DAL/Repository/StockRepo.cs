@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace FinPulse.DAL;
 
 public class StockRepo : IStockRepo
@@ -10,19 +12,19 @@ public class StockRepo : IStockRepo
     }
 
 
-    public List<Stock> GetAllStocks()
+    public async Task<List<Stock>> GetAllStocks()
     {
-        return _context.Stocks.ToList();
+        return await _context.Stocks.ToListAsync();
     }
 
-    public Stock? GetStockById(Guid id)
+    public async Task<Stock?> GetStockById(Guid id)
     {
-        return _context.Stocks.FirstOrDefault(x => x.Id == id);
+        return await _context.Stocks.FirstOrDefaultAsync(x => x.Id == id);
     }
 
-    public void CreateStock(Stock stock)
+    public async Task CreateStock(Stock stock)
     {
-        _context.Stocks.Add(stock);
+        await _context.Stocks.AddAsync(stock);
     }
 
     public void UpdateStock(Stock stock)
@@ -36,8 +38,8 @@ public class StockRepo : IStockRepo
     }
 
 
-    public int SaveChanges()
+    public async Task<int> SaveChanges()
     {
-        return _context.SaveChanges();
+        return await _context.SaveChangesAsync();
     }
 }

@@ -1,6 +1,4 @@
 using FinPulse.BL;
-using FinPulse.DAL;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinPulse.Controllers
@@ -18,9 +16,9 @@ namespace FinPulse.Controllers
         #region GetAll
         
         [HttpGet]
-        public ActionResult<List<StockReadDto>> GetAll()
+        public async Task<ActionResult<List<StockReadDto>>> GetAll()
         {
-            List<StockReadDto> stocks = _stockManager.GetAllStocks();
+            List<StockReadDto> stocks = await _stockManager.GetAllStocks();
             if (stocks == null) return NotFound("No stocks found.");
         
             return Ok(stocks);
@@ -32,9 +30,9 @@ namespace FinPulse.Controllers
         
         [HttpGet]
         [Route("{id}")]
-        public ActionResult<StockReadDto> GetById(Guid id)
+        public async Task<ActionResult<StockReadDto>> GetById(Guid id)
         {
-            StockReadDto? stock = _stockManager.GetStockById(id);
+            StockReadDto? stock = await _stockManager.GetStockById(id);
             if(stock == null) return NotFound();
             
             return Ok(stock);
@@ -45,9 +43,9 @@ namespace FinPulse.Controllers
         #region CreateStock
         [HttpPost]
         [Route("CreateStock")]
-        public ActionResult CreateStock(StockCreateDto stock)
+        public async Task<ActionResult> CreateStock(StockCreateDto stock)
         {
-            _stockManager.CreateStock(stock);
+            await _stockManager.CreateStock(stock);
             return Ok("Stock created successfully.");
         }
 
@@ -57,9 +55,9 @@ namespace FinPulse.Controllers
 
         [HttpPut]
         [Route("UpdateStock/{id}")]
-        public ActionResult UpdateStock(StockUpdateDto stockUpdateDto,Guid id)
+        public async Task<ActionResult> UpdateStock(StockUpdateDto stockUpdateDto,Guid id)
         {
-            bool isSuccessful = _stockManager.UpdateStock(stockUpdateDto, id);
+            bool isSuccessful = await _stockManager.UpdateStock(stockUpdateDto, id);
             if(!isSuccessful) return NotFound($"Stock with id {id} not found.");
             
             return Ok("Stock updated successfully.");
@@ -70,9 +68,9 @@ namespace FinPulse.Controllers
         #region DeleteStock
         [HttpDelete]
         [Route("DeleteStock/{id}")]
-        public ActionResult DeleteStock(Guid id)
+        public async Task<ActionResult> DeleteStock(Guid id)
         {
-           bool isSuccessful =  _stockManager.DeleteStock(id);
+           bool isSuccessful =  await _stockManager.DeleteStock(id);
            if(!isSuccessful) return NotFound($"Stock with id {id} not found.");
            
            return Ok("Stock deleted successfully.");

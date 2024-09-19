@@ -3,10 +3,10 @@ namespace FinPulse.BL;
 
 public interface IStockManager
 {
-    List<StockReadDto> GetAllStocks();
-    StockReadDto? GetStockById(Guid id);
-    void CreateStock(StockCreateDto stock);
-    bool UpdateStock(StockUpdateDto stock,Guid id);
+    Task<List<StockReadDto>> GetAllStocks();
+    Task<StockReadDto?> GetStockById(Guid id);
+    Task CreateStock(StockCreateDto stock);
+    Task<bool> UpdateStock(StockUpdateDto stock,Guid id);
     
-    bool DeleteStock(Guid id);
+    Task<bool> DeleteStock(Guid id);
 }
