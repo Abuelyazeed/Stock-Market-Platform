@@ -12,27 +12,27 @@ public class StockRepo : IStockRepo
     }
 
 
-    public async Task<List<Stock>> GetAllStocks()
+    public async Task<List<Stock>> GetAllStocksAsync()
     {
         return await _context.Stocks.ToListAsync();
     }
 
-    public async Task<Stock?> GetStockById(Guid id)
+    public async Task<Stock?> GetStockByIdAsync(Guid id)
     {
         return await _context.Stocks.FirstOrDefaultAsync(x => x.Id == id);
     }
 
-    public async Task CreateStock(Stock stock)
+    public async Task CreateStockAsync(Stock stock)
     {
         await _context.Stocks.AddAsync(stock);
     }
 
-    public void UpdateStock(Stock stock)
+    public void UpdateStockAsync(Stock stock)
     {
        // _context.Update(stock);
     }
 
-    public void DeleteStock(Stock stock)
+    public void DeleteStockAsync(Stock stock)
     {
         _context.Stocks.Remove(stock);
     }

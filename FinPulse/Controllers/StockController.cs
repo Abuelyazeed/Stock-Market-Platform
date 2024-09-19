@@ -18,7 +18,7 @@ namespace FinPulse.Controllers
         [HttpGet]
         public async Task<ActionResult<List<StockReadDto>>> GetAll()
         {
-            List<StockReadDto> stocks = await _stockManager.GetAllStocks();
+            List<StockReadDto> stocks = await _stockManager.GetAllStocksAsync();
             if (stocks == null) return NotFound("No stocks found.");
         
             return Ok(stocks);
@@ -32,7 +32,7 @@ namespace FinPulse.Controllers
         [Route("{id}")]
         public async Task<ActionResult<StockReadDto>> GetById(Guid id)
         {
-            StockReadDto? stock = await _stockManager.GetStockById(id);
+            StockReadDto? stock = await _stockManager.GetStockByIdAsync(id);
             if(stock == null) return NotFound();
             
             return Ok(stock);
@@ -45,7 +45,7 @@ namespace FinPulse.Controllers
         [Route("CreateStock")]
         public async Task<ActionResult> CreateStock(StockCreateDto stock)
         {
-            await _stockManager.CreateStock(stock);
+            await _stockManager.CreateStockAsync(stock);
             return Ok("Stock created successfully.");
         }
 
@@ -57,7 +57,7 @@ namespace FinPulse.Controllers
         [Route("UpdateStock/{id}")]
         public async Task<ActionResult> UpdateStock(StockUpdateDto stockUpdateDto,Guid id)
         {
-            bool isSuccessful = await _stockManager.UpdateStock(stockUpdateDto, id);
+            bool isSuccessful = await _stockManager.UpdateStockAsync(stockUpdateDto, id);
             if(!isSuccessful) return NotFound($"Stock with id {id} not found.");
             
             return Ok("Stock updated successfully.");
@@ -70,7 +70,7 @@ namespace FinPulse.Controllers
         [Route("DeleteStock/{id}")]
         public async Task<ActionResult> DeleteStock(Guid id)
         {
-           bool isSuccessful =  await _stockManager.DeleteStock(id);
+           bool isSuccessful =  await _stockManager.DeleteStockAsync(id);
            if(!isSuccessful) return NotFound($"Stock with id {id} not found.");
            
            return Ok("Stock deleted successfully.");
