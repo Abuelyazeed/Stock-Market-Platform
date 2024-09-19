@@ -33,6 +33,7 @@ public class StockManager : IStockManager
     public StockReadDto? GetStockById(Guid id)
     {
         Stock? stock = _stockRepo.GetStockById(id);
+        if (stock == null) return null;
 
         return new StockReadDto()
         {
@@ -66,6 +67,7 @@ public class StockManager : IStockManager
     public bool UpdateStock(StockUpdateDto stockUpdateDto,Guid id)
     {
         Stock? stock = _stockRepo.GetStockById(id);
+        if (stock == null) return false;
         
         stock.Symbol = stockUpdateDto.Symbol;
         stock.CompanyName = stockUpdateDto.CompanyName;
@@ -76,5 +78,15 @@ public class StockManager : IStockManager
         
         int numberOfAffectedRows = _stockRepo.SaveChanges();
         return numberOfAffectedRows > 0;
+    }
+
+    public bool DeleteStock(Guid id)
+    {
+        Stock? stock = _stockRepo.GetStockById(id);
+        if (stock == null) return false;
+        
+        _stockRepo.DeleteStock(stock);
+        _stockRepo.SaveChanges();
+        return true;
     }
 }

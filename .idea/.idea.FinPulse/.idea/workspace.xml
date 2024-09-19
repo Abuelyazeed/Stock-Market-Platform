@@ -9,8 +9,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b26f06ac-6a19-4e6d-920d-e3b1764a6295" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/FinPulse.BL/Dtos/Stock/StockCreateDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinPulse.BL/Dtos/Stock/StockUpdateDto.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FinPulse/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FinPulse/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FinPulse.BL/Managers/IStockManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.BL/Managers/IStockManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FinPulse.BL/Managers/StockManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.BL/Managers/StockManager.cs" afterDir="false" />
@@ -115,7 +113,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726503391342</updated>
-      <workItem from="1726503394090" duration="13168000" />
+      <workItem from="1726503394090" duration="15458000" />
     </task>
     <servers />
   </component>

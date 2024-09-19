@@ -8,5 +8,7 @@ public interface IStockRepo
     void CreateStock(Stock stock);
     
     void UpdateStock(Stock stock);
+    
+    void DeleteStock(Stock stock);
     int SaveChanges();
 }

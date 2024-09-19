@@ -30,6 +30,11 @@ public class StockRepo : IStockRepo
        // _context.Update(stock);
     }
 
+    public void DeleteStock(Stock stock)
+    {
+        _context.Stocks.Remove(stock);
+    }
+
 
     public int SaveChanges()
     {

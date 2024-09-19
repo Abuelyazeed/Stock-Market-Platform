@@ -21,7 +21,7 @@ namespace FinPulse.Controllers
         public ActionResult<List<StockReadDto>> GetAll()
         {
             List<StockReadDto> stocks = _stockManager.GetAllStocks();
-            if (stocks == null) return NotFound();
+            if (stocks == null) return NotFound("No stocks found.");
         
             return Ok(stocks);
         }
@@ -48,7 +48,7 @@ namespace FinPulse.Controllers
         public ActionResult CreateStock(StockCreateDto stock)
         {
             _stockManager.CreateStock(stock);
-            return Ok();
+            return Ok("Stock created successfully.");
         }
 
         #endregion
@@ -60,11 +60,24 @@ namespace FinPulse.Controllers
         public ActionResult UpdateStock(StockUpdateDto stockUpdateDto,Guid id)
         {
             bool isSuccessful = _stockManager.UpdateStock(stockUpdateDto, id);
-            if(!isSuccessful) return NotFound();
+            if(!isSuccessful) return NotFound($"Stock with id {id} not found.");
             
-            return Ok();
+            return Ok("Stock updated successfully.");
         }
 
+        #endregion
+
+        #region DeleteStock
+        [HttpDelete]
+        [Route("DeleteStock/{id}")]
+        public ActionResult DeleteStock(Guid id)
+        {
+           bool isSuccessful =  _stockManager.DeleteStock(id);
+           if(!isSuccessful) return NotFound($"Stock with id {id} not found.");
+           
+           return Ok("Stock deleted successfully.");
+        }
+        
         #endregion
     }
 }

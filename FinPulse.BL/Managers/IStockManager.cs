@@ -7,4 +7,6 @@ public interface IStockManager
     StockReadDto? GetStockById(Guid id);
     void CreateStock(StockCreateDto stock);
     bool UpdateStock(StockUpdateDto stock,Guid id);
+    
+    bool DeleteStock(Guid id);
 }
