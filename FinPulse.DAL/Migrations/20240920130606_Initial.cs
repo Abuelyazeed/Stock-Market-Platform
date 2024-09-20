@@ -3,16 +3,18 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace FinPulse.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Stock",
+                name: "Stocks",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -25,43 +27,54 @@ namespace FinPulse.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Stock", x => x.Id);
+                    table.PrimaryKey("PK_Stocks", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comment",
+                name: "Comments",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StockId = table.Column<int>(type: "int", nullable: false),
-                    StockId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StockId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Comment", x => x.Id);
+                    table.PrimaryKey("PK_Comments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Comment_Stock_StockId1",
-                        column: x => x.StockId1,
-                        principalTable: "Stock",
-                        principalColumn: "Id");
+                        name: "FK_Comments_Stocks_StockId",
+                        column: x => x.StockId,
+                        principalTable: "Stocks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Stocks",
+                columns: new[] { "Id", "CompanyName", "Industry", "LastDiv", "MarketCap", "Purchase", "Symbol" },
+                values: new object[,]
+                {
+                    { new Guid("9898b25c-c7df-4ce2-91c3-c79082635bda"), "Microsoft Corporation", "Technology", 0.56m, 2300000000000L, 305.12m, "MSFT" },
+                    { new Guid("dd9c660f-0307-4abf-9e2a-b33c69e9038f"), "Apple Inc.", "Technology", 0.22m, 2500000000000L, 150.25m, "AAPL" },
+                    { new Guid("f8733bac-1c46-4e8e-923c-7caf15a25184"), "Tesla Inc.", "Automotive", 0.00m, 900000000000L, 750.50m, "TSLA" }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comment_StockId1",
-                table: "Comment",
-                column: "StockId1");
+                name: "IX_Comments_StockId",
+                table: "Comments",
+                column: "StockId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Comment");
+                name: "Comments");
 
             migrationBuilder.DropTable(
-                name: "Stock");
+                name: "Stocks");
         }
     }
 }

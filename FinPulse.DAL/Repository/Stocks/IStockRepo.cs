@@ -6,9 +6,9 @@ public interface IStockRepo
     Task<Stock?> GetStockByIdAsync(Guid id);
 
     Task CreateStockAsync(Stock stock);
-    
+
     void UpdateStockAsync(Stock stock);
-    
+
     void DeleteStockAsync(Stock stock);
     Task<int> SaveChanges();
 }

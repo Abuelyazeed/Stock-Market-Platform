@@ -5,7 +5,7 @@ namespace FinPulse.DAL;
 public class FinPulseContext : DbContext
 {
     public DbSet<Stock> Stocks => Set<Stock>();
-    public DbSet<Stock> Comments => Set<Stock>();
+    public DbSet<Comment> Comments => Set<Comment>();
     
     public FinPulseContext(DbContextOptions<FinPulseContext> options) : base(options)
     {

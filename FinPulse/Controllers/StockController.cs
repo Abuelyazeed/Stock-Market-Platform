@@ -19,7 +19,7 @@ namespace FinPulse.Controllers
         public async Task<ActionResult<List<StockReadDto>>> GetAll()
         {
             List<StockReadDto> stocks = await _stockManager.GetAllStocksAsync();
-            if (stocks == null) return NotFound("No stocks found.");
+            if (stocks == null || stocks.Count == 0) return NotFound("No stocks found.");
         
             return Ok(stocks);
         }

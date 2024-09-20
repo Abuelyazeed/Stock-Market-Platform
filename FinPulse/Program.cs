@@ -27,12 +27,14 @@ builder.Services.AddDbContext<FinPulseContext>(options =>
 #region Repos
 
 builder.Services.AddScoped<IStockRepo, StockRepo>();
+builder.Services.AddScoped<ICommentRepo, CommentRepo>();
 
 #endregion
 
 #region Managers
 
 builder.Services.AddScoped<IStockManager, StockManager>();
+builder.Services.AddScoped<ICommentManager, CommentManager>();
 
 #endregion
 

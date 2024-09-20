@@ -32,10 +32,10 @@ namespace FinPulse.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StockId")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("StockId1")
+                    b.Property<Guid>("StockId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Title")
@@ -44,9 +44,9 @@ namespace FinPulse.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StockId1");
+                    b.HasIndex("StockId");
 
-                    b.ToTable("Comment");
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("FinPulse.DAL.Stock", b =>
@@ -78,12 +78,12 @@ namespace FinPulse.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Stock");
+                    b.ToTable("Stocks");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("71cc8c4f-5191-45d9-b769-e37ed28aa390"),
+                            Id = new Guid("dd9c660f-0307-4abf-9e2a-b33c69e9038f"),
                             CompanyName = "Apple Inc.",
                             Industry = "Technology",
                             LastDiv = 0.22m,
@@ -93,7 +93,7 @@ namespace FinPulse.DAL.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3ffa8bdc-9ba8-437f-a061-4e78f7652537"),
+                            Id = new Guid("9898b25c-c7df-4ce2-91c3-c79082635bda"),
                             CompanyName = "Microsoft Corporation",
                             Industry = "Technology",
                             LastDiv = 0.56m,
@@ -103,7 +103,7 @@ namespace FinPulse.DAL.Migrations
                         },
                         new
                         {
-                            Id = new Guid("55999fc8-8128-452e-9b8a-7c14672d7417"),
+                            Id = new Guid("f8733bac-1c46-4e8e-923c-7caf15a25184"),
                             CompanyName = "Tesla Inc.",
                             Industry = "Automotive",
                             LastDiv = 0.00m,
@@ -117,7 +117,9 @@ namespace FinPulse.DAL.Migrations
                 {
                     b.HasOne("FinPulse.DAL.Stock", "Stock")
                         .WithMany("Comments")
-                        .HasForeignKey("StockId1");
+                        .HasForeignKey("StockId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Stock");
                 });
