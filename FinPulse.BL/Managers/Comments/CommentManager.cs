@@ -21,7 +21,7 @@ public class CommentManager : ICommentManager
             Title = comment.Title,
             Content = comment.Content,
             CreatedOn = comment.CreatedOn,
-            // StockId = comment.StockId,
+            StockId = comment.StockId,
 
         }).ToList();
         
@@ -37,6 +37,7 @@ public class CommentManager : ICommentManager
             Title = commentFromDb.Title,
             Content = commentFromDb.Content,
             CreatedOn = commentFromDb.CreatedOn,
+            StockId = commentFromDb.StockId,
         };
         
         return comment;

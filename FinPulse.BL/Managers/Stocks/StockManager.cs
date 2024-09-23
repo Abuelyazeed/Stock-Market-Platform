@@ -25,6 +25,14 @@ public class StockManager : IStockManager
             LastDiv = stock.LastDiv,
             Industry = stock.Industry,
             MarketCap = stock.MarketCap,
+            Comments = stock.Comments.Select(c => new CommentReadDto
+            {
+                Id = c.Id,
+                Title = c.Title,
+                Content = c.Content,
+                CreatedOn = c.CreatedOn,
+                StockId = c.StockId
+            }).ToList(),
         }).ToList();
 
         return stockReadDtos;
@@ -44,6 +52,14 @@ public class StockManager : IStockManager
             LastDiv = stock.LastDiv,
             Industry = stock.Industry,
             MarketCap = stock.MarketCap,
+            Comments = stock.Comments.Select(c => new CommentReadDto
+            {
+                Id = c.Id,
+                Title = c.Title,
+                Content = c.Content,
+                CreatedOn = c.CreatedOn,
+                StockId = c.StockId
+            }).ToList(),
         };
     }
 
