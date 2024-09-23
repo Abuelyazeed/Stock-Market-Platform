@@ -26,5 +26,19 @@ namespace FinPulse.Controllers
         }
 
         #endregion
+        
+        #region GetById
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult> GetById(Guid id)
+        {
+            CommentReadDto comment = await _commentManager.GetCommentByIdAsync(id);
+            if(comment == null) return NotFound("No comment found.");
+            
+            return Ok(comment);
+        }
+
+        #endregion
     }
 }

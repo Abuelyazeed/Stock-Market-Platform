@@ -27,4 +27,18 @@ public class CommentManager : ICommentManager
         
         return commentReadDtos;
     }
+
+    public async Task<CommentReadDto> GetCommentByIdAsync(Guid id)
+    {
+        Comment commentFromDb = await _commentRepo.GetCommentByIdAsync(id);
+        CommentReadDto comment = new CommentReadDto()
+        {
+            Id = commentFromDb.Id,
+            Title = commentFromDb.Title,
+            Content = commentFromDb.Content,
+            CreatedOn = commentFromDb.CreatedOn,
+        };
+        
+        return comment;
+    }
 }
