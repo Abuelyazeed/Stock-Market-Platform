@@ -40,5 +40,55 @@ namespace FinPulse.Controllers
         }
 
         #endregion
+        
+        #region CreateComment
+
+        [HttpPost]
+        [Route("CreateComment/{stockId}")]
+        public async Task<ActionResult> CreateComment(Guid stockId,CommentCreateDto comment)
+        {
+            try
+            {
+                await _commentManager.CreateCommentAsync(stockId, comment);
+                return Ok("Comment created successfully.");
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        #endregion
+
+        #region UpdateComment
+
+        [HttpPut]
+        [Route("UpdateComment/{id}")]
+        public async Task<ActionResult> UpdateComment(Guid id, CommentUpdateDto comment)
+        {
+            bool isSuccessful = await _commentManager.UpdateCommentAsync(id, comment);
+            if(!isSuccessful) return BadRequest("Failed to update comment.");
+            
+            return Ok("Comment updated successfully.");
+        }
+        #endregion
+        
+        #region DeleteComment
+
+        [HttpDelete]
+        [Route("DeleteComment/{id}")]
+        public async Task<ActionResult> DeleteComment(Guid id)
+        {
+            try
+            {
+                await _commentManager.DeleteCommentByIdAsync(id);
+                return Ok("Comment deleted successfully.");
+            }
+            catch (Exception ex)
+            {
+                return NotFound("Can not delete comment.");
+            }
+        }
+        #endregion
     }
 }

@@ -42,4 +42,36 @@ public class CommentManager : ICommentManager
         
         return comment;
     }
+
+    public async Task CreateCommentAsync(Guid stockId, CommentCreateDto Createdcomment)
+    {
+        Comment comment = new Comment()
+        {
+            Title = Createdcomment.Title,
+            Content = Createdcomment.Content,
+            CreatedOn = DateTime.Now,
+            StockId = stockId,
+        };
+        
+        await _commentRepo.CreateCommentAsync(comment);
+        await _commentRepo.SaveChanges();
+    }
+
+    public async Task<bool> UpdateCommentAsync(Guid id, CommentUpdateDto commentUpdateDto)
+    {
+        Comment? commentFromDb = await _commentRepo.GetCommentByIdAsync(id);
+        if(commentFromDb == null) return false;
+
+        commentFromDb.Title = commentUpdateDto.Title;
+        commentFromDb.Content = commentUpdateDto.Content;
+            
+        int numberOfAffectedRows = await _commentRepo.SaveChanges();
+        return numberOfAffectedRows > 0;
+    }
+    
+    public async Task DeleteCommentByIdAsync(Guid id)
+    { 
+        await _commentRepo.DeleteCommentAsync(id);
+        await _commentRepo.SaveChanges();
+    }
 }
