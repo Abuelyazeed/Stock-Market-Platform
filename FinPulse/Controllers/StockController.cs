@@ -29,7 +29,7 @@ namespace FinPulse.Controllers
         #region GetById
         
         [HttpGet]
-        [Route("{id}")]
+        [Route("{id:guid}")]
         public async Task<ActionResult<StockReadDto>> GetById(Guid id)
         {
             StockReadDto? stock = await _stockManager.GetStockByIdAsync(id);
@@ -54,7 +54,7 @@ namespace FinPulse.Controllers
         #region UpdateStock
 
         [HttpPut]
-        [Route("UpdateStock/{id}")]
+        [Route("UpdateStock/{id:guid}")]
         public async Task<ActionResult> UpdateStock(StockUpdateDto stockUpdateDto,Guid id)
         {
             bool isSuccessful = await _stockManager.UpdateStockAsync(stockUpdateDto, id);
@@ -67,7 +67,7 @@ namespace FinPulse.Controllers
 
         #region DeleteStock
         [HttpDelete]
-        [Route("DeleteStock/{id}")]
+        [Route("DeleteStock/{id:guid}")]
         public async Task<ActionResult> DeleteStock(Guid id)
         {
            bool isSuccessful =  await _stockManager.DeleteStockAsync(id);

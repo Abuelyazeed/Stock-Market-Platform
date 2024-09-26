@@ -10,7 +10,12 @@
   <component name="ChangeListManager">
     <list default="true" id="b26f06ac-6a19-4e6d-920d-e3b1764a6295" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FinPulse/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FinPulse/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Repository/Comments/ICommentRepo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.DAL/Repository/Comments/ICommentRepo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse.BL/Dtos/Comment/CommentCreateDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.BL/Dtos/Comment/CommentCreateDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse.BL/Dtos/Comment/CommentUpdateDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.BL/Dtos/Comment/CommentUpdateDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse.BL/Dtos/Stock/StockCreateDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.BL/Dtos/Stock/StockCreateDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse.BL/Dtos/Stock/StockUpdateDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.BL/Dtos/Stock/StockUpdateDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse/Controllers/CommentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse/Controllers/CommentController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinPulse/Controllers/StockController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse/Controllers/StockController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,6 +116,8 @@
       <updated>1726503391342</updated>
       <workItem from="1726503394090" duration="24534000" />
       <workItem from="1726852923897" duration="1224000" />
+      <workItem from="1727093383641" duration="6561000" />
+      <workItem from="1727384917852" duration="973000" />
     </task>
     <servers />
   </component>

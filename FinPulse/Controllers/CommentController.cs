@@ -30,7 +30,7 @@ namespace FinPulse.Controllers
         #region GetById
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("{id:guid}")]
         public async Task<ActionResult> GetById(Guid id)
         {
             CommentReadDto comment = await _commentManager.GetCommentByIdAsync(id);
@@ -44,7 +44,7 @@ namespace FinPulse.Controllers
         #region CreateComment
 
         [HttpPost]
-        [Route("CreateComment/{stockId}")]
+        [Route("CreateComment/{stockId:guid}")]
         public async Task<ActionResult> CreateComment(Guid stockId,CommentCreateDto comment)
         {
             try
@@ -63,7 +63,7 @@ namespace FinPulse.Controllers
         #region UpdateComment
 
         [HttpPut]
-        [Route("UpdateComment/{id}")]
+        [Route("UpdateComment/{id:guid}")]
         public async Task<ActionResult> UpdateComment(Guid id, CommentUpdateDto comment)
         {
             bool isSuccessful = await _commentManager.UpdateCommentAsync(id, comment);
@@ -76,7 +76,7 @@ namespace FinPulse.Controllers
         #region DeleteComment
 
         [HttpDelete]
-        [Route("DeleteComment/{id}")]
+        [Route("DeleteComment/{id:guid}")]
         public async Task<ActionResult> DeleteComment(Guid id)
         {
             try
