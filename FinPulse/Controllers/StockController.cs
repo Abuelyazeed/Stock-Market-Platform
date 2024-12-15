@@ -13,29 +13,29 @@ namespace FinPulse.Controllers
             _stockManager = stockManager;
         }
 
-        #region GetAll
+        #region GetStocks
         
         [HttpGet]
-        public async Task<ActionResult<List<StockReadDto>>> GetAll()
+        public async Task<ActionResult<List<StockDto>>> GetStocks()
         {
-            List<StockReadDto> stocks = await _stockManager.GetAllStocksAsync();
-            if (stocks == null || stocks.Count == 0) return NotFound("No stocks found.");
+            List<StockDto> stocks = await _stockManager.GetStocksAsync();
+            // if (stocks == null || stocks.Count == 0) return NotFound("No stocks found.");
         
             return Ok(stocks);
         }
         
         #endregion
         
-        #region GetById
+        #region GetStock
         
         [HttpGet]
         [Route("{id:guid}")]
-        public async Task<ActionResult<StockReadDto>> GetById(Guid id)
+        public async Task<ActionResult<StockDto>> GetStock(int id)
         {
-            StockReadDto? stock = await _stockManager.GetStockByIdAsync(id);
+            StockDto? stock = await _stockManager.GetStockAsync(id);
             if(stock == null) return NotFound();
             
-            return Ok(stock);
+            return stock;
         }
         
         #endregion
@@ -54,8 +54,8 @@ namespace FinPulse.Controllers
         #region UpdateStock
 
         [HttpPut]
-        [Route("UpdateStock/{id:guid}")]
-        public async Task<ActionResult> UpdateStock(StockUpdateDto stockUpdateDto,Guid id)
+        [Route("UpdateStock/{id:int}")]
+        public async Task<ActionResult> UpdateStock(StockUpdateDto stockUpdateDto,int id)
         {
             bool isSuccessful = await _stockManager.UpdateStockAsync(stockUpdateDto, id);
             if(!isSuccessful) return NotFound($"Stock with id {id} not found.");
@@ -67,8 +67,8 @@ namespace FinPulse.Controllers
 
         #region DeleteStock
         [HttpDelete]
-        [Route("DeleteStock/{id:guid}")]
-        public async Task<ActionResult> DeleteStock(Guid id)
+        [Route("DeleteStock/{id:int}")]
+        public async Task<ActionResult> DeleteStock(int id)
         {
            bool isSuccessful =  await _stockManager.DeleteStockAsync(id);
            if(!isSuccessful) return NotFound($"Stock with id {id} not found.");

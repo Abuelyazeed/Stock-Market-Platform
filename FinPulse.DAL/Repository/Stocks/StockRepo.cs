@@ -12,14 +12,14 @@ public class StockRepo : IStockRepo
     }
 
 
-    public async Task<List<Stock>> GetAllStocksAsync()
+    public async Task<List<Stock>> GetStocksAsync()
     {
         return await _context.Stocks
             .Include(c => c.Comments)
             .ToListAsync();
     }
 
-    public async Task<Stock?> GetStockByIdAsync(Guid id)
+    public async Task<Stock?> GetStockAsync(int id)
     {
         return await _context.Stocks
             .Include(c => c.Comments)

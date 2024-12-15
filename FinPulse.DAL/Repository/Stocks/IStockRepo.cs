@@ -2,8 +2,8 @@ namespace FinPulse.DAL;
 
 public interface IStockRepo
 {
-    Task<List<Stock>> GetAllStocksAsync();
-    Task<Stock?> GetStockByIdAsync(Guid id);
+    Task<List<Stock>> GetStocksAsync();
+    Task<Stock?> GetStockAsync(int id);
 
     Task CreateStockAsync(Stock stock);
 

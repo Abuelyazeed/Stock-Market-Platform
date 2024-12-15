@@ -16,7 +16,7 @@ public class CommentRepo : ICommentRepo
         return await _context.Comments.ToListAsync();
     }
 
-    public async Task<Comment> GetCommentByIdAsync(Guid id)
+    public async Task<Comment> GetCommentByIdAsync(int id)
     {
         return await _context.Comments.FindAsync(id);
     }
@@ -26,7 +26,7 @@ public class CommentRepo : ICommentRepo
          await _context.Comments.AddAsync(comment);
     }
 
-    public async Task DeleteCommentAsync(Guid id)
+    public async Task DeleteCommentAsync(int id)
     {
         var comment = await _context.Comments.FindAsync(id);
         if (comment != null)

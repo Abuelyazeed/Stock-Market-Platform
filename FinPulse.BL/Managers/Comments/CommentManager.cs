@@ -28,7 +28,7 @@ public class CommentManager : ICommentManager
         return commentReadDtos;
     }
 
-    public async Task<CommentReadDto> GetCommentByIdAsync(Guid id)
+    public async Task<CommentReadDto> GetCommentByIdAsync(int id)
     {
         Comment commentFromDb = await _commentRepo.GetCommentByIdAsync(id);
         CommentReadDto comment = new CommentReadDto()
@@ -43,7 +43,7 @@ public class CommentManager : ICommentManager
         return comment;
     }
 
-    public async Task CreateCommentAsync(Guid stockId, CommentCreateDto Createdcomment)
+    public async Task CreateCommentAsync(int stockId, CommentCreateDto Createdcomment)
     {
         Comment comment = new Comment()
         {
@@ -57,7 +57,7 @@ public class CommentManager : ICommentManager
         await _commentRepo.SaveChanges();
     }
 
-    public async Task<bool> UpdateCommentAsync(Guid id, CommentUpdateDto commentUpdateDto)
+    public async Task<bool> UpdateCommentAsync(int id, CommentUpdateDto commentUpdateDto)
     {
         Comment? commentFromDb = await _commentRepo.GetCommentByIdAsync(id);
         if(commentFromDb == null) return false;
@@ -69,7 +69,7 @@ public class CommentManager : ICommentManager
         return numberOfAffectedRows > 0;
     }
     
-    public async Task DeleteCommentByIdAsync(Guid id)
+    public async Task DeleteCommentByIdAsync(int id)
     { 
         await _commentRepo.DeleteCommentAsync(id);
         await _commentRepo.SaveChanges();

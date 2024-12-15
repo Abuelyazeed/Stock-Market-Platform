@@ -2,9 +2,9 @@
 
 namespace FinPulse.BL;
 
-public class StockReadDto
+public class StockDto
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
     public string Symbol { get; set; } = string.Empty;
     public string CompanyName { get; set; } = string.Empty;
     public decimal Purchase { get; set; }

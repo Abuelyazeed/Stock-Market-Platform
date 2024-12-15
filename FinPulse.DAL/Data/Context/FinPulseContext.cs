@@ -4,8 +4,8 @@ namespace FinPulse.DAL;
 
 public class FinPulseContext : DbContext
 {
-    public DbSet<Stock> Stocks => Set<Stock>();
-    public DbSet<Comment> Comments => Set<Comment>();
+    public DbSet<Stock> Stocks { get; set; }
+    public DbSet<Comment> Comments { get; set; }
     
     public FinPulseContext(DbContextOptions<FinPulseContext> options) : base(options)
     {
@@ -21,7 +21,7 @@ public class FinPulseContext : DbContext
         modelBuilder.Entity<Stock>().HasData(
             new Stock
             {
-                Id = Guid.NewGuid(),
+                Id = 1,
                 Symbol = "AAPL",
                 CompanyName = "Apple Inc.",
                 Purchase = 150.25m,
@@ -31,7 +31,7 @@ public class FinPulseContext : DbContext
             },
             new Stock
             {
-                Id = Guid.NewGuid(),
+                Id = 2,
                 Symbol = "MSFT",
                 CompanyName = "Microsoft Corporation",
                 Purchase = 305.12m,
@@ -41,7 +41,7 @@ public class FinPulseContext : DbContext
             },
             new Stock
             {
-                Id = Guid.NewGuid(),
+                Id = 3,
                 Symbol = "TSLA",
                 CompanyName = "Tesla Inc.",
                 Purchase = 750.50m,

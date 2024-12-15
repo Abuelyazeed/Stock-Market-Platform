@@ -30,8 +30,8 @@ namespace FinPulse.Controllers
         #region GetById
 
         [HttpGet]
-        [Route("{id:guid}")]
-        public async Task<ActionResult> GetById(Guid id)
+        [Route("{id:int}")]
+        public async Task<ActionResult> GetById(int id)
         {
             CommentReadDto comment = await _commentManager.GetCommentByIdAsync(id);
             if(comment == null) return NotFound("No comment found.");
@@ -44,8 +44,8 @@ namespace FinPulse.Controllers
         #region CreateComment
 
         [HttpPost]
-        [Route("CreateComment/{stockId:guid}")]
-        public async Task<ActionResult> CreateComment(Guid stockId,CommentCreateDto comment)
+        [Route("CreateComment/{stockId:int}")]
+        public async Task<ActionResult> CreateComment(int stockId,CommentCreateDto comment)
         {
             try
             {
@@ -63,8 +63,8 @@ namespace FinPulse.Controllers
         #region UpdateComment
 
         [HttpPut]
-        [Route("UpdateComment/{id:guid}")]
-        public async Task<ActionResult> UpdateComment(Guid id, CommentUpdateDto comment)
+        [Route("UpdateComment/{id:int}")]
+        public async Task<ActionResult> UpdateComment(int id, CommentUpdateDto comment)
         {
             bool isSuccessful = await _commentManager.UpdateCommentAsync(id, comment);
             if(!isSuccessful) return BadRequest("Failed to update comment.");
@@ -76,8 +76,8 @@ namespace FinPulse.Controllers
         #region DeleteComment
 
         [HttpDelete]
-        [Route("DeleteComment/{id:guid}")]
-        public async Task<ActionResult> DeleteComment(Guid id)
+        [Route("DeleteComment/{id:int}")]
+        public async Task<ActionResult> DeleteComment(int id)
         {
             try
             {
