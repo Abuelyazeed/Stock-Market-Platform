@@ -63,7 +63,7 @@ public class StockManager : IStockManager
         };
     }
 
-    public async Task CreateStockAsync(StockCreateDto stockToCreate)
+    public async Task<int> CreateStockAsync(StockCreateDto stockToCreate)
     {
         Stock stock = new Stock()
         {
@@ -78,12 +78,17 @@ public class StockManager : IStockManager
         };
         await _stockRepo.CreateStockAsync(stock);
         await _stockRepo.SaveChanges();
+
+        return stock.Id;
     }
 
-    public async Task<bool> UpdateStockAsync(StockUpdateDto stockUpdateDto,int id)
+    public async Task<StockDto> UpdateStockAsync(StockUpdateDto stockUpdateDto,int id)
     {
         Stock? stock = await _stockRepo.GetStockAsync(id);
-        if (stock == null) return false;
+        if (stock == null)
+        {
+            return null;
+        }
         
         stock.Symbol = stockUpdateDto.Symbol;
         stock.CompanyName = stockUpdateDto.CompanyName;
@@ -91,9 +96,27 @@ public class StockManager : IStockManager
         stock.LastDiv = stockUpdateDto.LastDiv;
         stock.Industry = stockUpdateDto.Industry;
         stock.MarketCap = stockUpdateDto.MarketCap;
+
+        await _stockRepo.SaveChanges();
         
-        int numberOfAffectedRows = await _stockRepo.SaveChanges();
-        return numberOfAffectedRows > 0;
+        return new StockDto
+        {
+            Id = stock.Id,
+            Symbol = stock.Symbol,
+            CompanyName = stock.CompanyName,
+            Purchase = stock.Purchase,
+            LastDiv = stock.LastDiv,
+            Industry = stock.Industry,
+            MarketCap = stock.MarketCap,
+            Comments = stock.Comments.Select(c => new CommentReadDto
+            {
+                Id = c.Id,
+                Title = c.Title,
+                Content = c.Content,
+                CreatedOn = c.CreatedOn,
+                StockId = c.StockId
+            }).ToList(),
+        };
     }
 
     public async Task<bool> DeleteStockAsync(int id)

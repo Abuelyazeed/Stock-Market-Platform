@@ -18,7 +18,7 @@ namespace FinPulse.Controllers
         [HttpGet]
         public async Task<ActionResult<List<StockDto>>> GetStocks()
         {
-            List<StockDto> stocks = await _stockManager.GetStocksAsync();
+            var stocks = await _stockManager.GetStocksAsync();
             // if (stocks == null || stocks.Count == 0) return NotFound("No stocks found.");
         
             return Ok(stocks);
@@ -32,7 +32,7 @@ namespace FinPulse.Controllers
         [Route("{id:int}")]
         public async Task<ActionResult<StockDto>> GetStock(int id)
         {
-            StockDto? stock = await _stockManager.GetStockAsync(id);
+            var stock = await _stockManager.GetStockAsync(id);
             if(stock == null) return NotFound();
             
             return stock;
@@ -42,11 +42,10 @@ namespace FinPulse.Controllers
 
         #region CreateStock
         [HttpPost]
-        [Route("CreateStock")]
         public async Task<ActionResult> CreateStock(StockCreateDto stock)
         {
-            await _stockManager.CreateStockAsync(stock);
-            return Ok("Stock created successfully.");
+            int stockId = await _stockManager.CreateStockAsync(stock);
+            return CreatedAtAction(nameof(GetStock), new { id = stockId }, stock);
         }
 
         #endregion
@@ -54,26 +53,26 @@ namespace FinPulse.Controllers
         #region UpdateStock
 
         [HttpPut]
-        [Route("UpdateStock/{id:int}")]
+        [Route("{id:int}")]
         public async Task<ActionResult> UpdateStock(StockUpdateDto stockUpdateDto,int id)
         {
-            bool isSuccessful = await _stockManager.UpdateStockAsync(stockUpdateDto, id);
-            if(!isSuccessful) return NotFound($"Stock with id {id} not found.");
+            var stock = await _stockManager.UpdateStockAsync(stockUpdateDto, id);
+            if(stock == null) return NotFound("Stock not found.");
             
-            return Ok("Stock updated successfully.");
+            return Ok(stock);
         }
 
         #endregion
 
         #region DeleteStock
         [HttpDelete]
-        [Route("DeleteStock/{id:int}")]
+        [Route("{id:int}")]
         public async Task<ActionResult> DeleteStock(int id)
         {
            bool isSuccessful =  await _stockManager.DeleteStockAsync(id);
-           if(!isSuccessful) return NotFound($"Stock with id {id} not found.");
+           if(!isSuccessful) return NotFound($"Stock not found.");
            
-           return Ok("Stock deleted successfully.");
+           return NoContent();
         }
         
         #endregion

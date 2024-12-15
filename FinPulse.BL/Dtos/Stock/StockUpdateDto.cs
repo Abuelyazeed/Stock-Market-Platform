@@ -14,7 +14,7 @@ public class StockUpdateDto
     [Range(1,1000000000)]
     public decimal Purchase { get; set; }
     [Required]
-    [Range(0.001,100)]
+    [Range(0,100)]
     public decimal LastDiv { get; set; }
     [Required]
     [MaxLength(10, ErrorMessage = "Industry cannot be longer than 10 characters.")]
