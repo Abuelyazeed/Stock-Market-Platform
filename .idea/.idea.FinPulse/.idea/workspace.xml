@@ -9,25 +9,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b26f06ac-6a19-4e6d-920d-e3b1764a6295" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FinPulse/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FinPulse/.idea/projectSettingsUpdater.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FinPulse/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FinPulse/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse.BL/Dtos/Comment/CommentReadDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.BL/Dtos/Comment/CommentReadDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse.BL/Dtos/Stock/StockReadDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.BL/Dtos/Stock/StockDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse.BL/Managers/Stocks/IStockManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.BL/Managers/Stocks/IStockManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse.BL/Managers/Stocks/StockManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.BL/Managers/Stocks/StockManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Data/Context/FinPulseContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.DAL/Data/Context/FinPulseContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Data/Models/Comment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.DAL/Data/Models/Comment.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Data/Models/Stock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.DAL/Data/Models/Stock.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/FinPulse.DAL.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.DAL/FinPulse.DAL.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Migrations/20240920130606_Initial.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Migrations/20240920130606_Initial.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Migrations/FinPulseContextModelSnapshot.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Repository/Stocks/IStockRepo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.DAL/Repository/Stocks/IStockRepo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Repository/Stocks/StockRepo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.DAL/Repository/Stocks/StockRepo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FinPulse/Controllers/StockController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse/Controllers/StockController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse/FinPulse.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse/FinPulse.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse/appsettings.Development.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +130,7 @@
       <workItem from="1726852923897" duration="1224000" />
       <workItem from="1727093383641" duration="6561000" />
       <workItem from="1727384917852" duration="973000" />
-      <workItem from="1734223674163" duration="1808000" />
+      <workItem from="1734223674163" duration="2449000" />
     </task>
     <servers />
   </component>

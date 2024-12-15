@@ -29,7 +29,7 @@ namespace FinPulse.Controllers
         #region GetStock
         
         [HttpGet]
-        [Route("{id:guid}")]
+        [Route("{id:int}")]
         public async Task<ActionResult<StockDto>> GetStock(int id)
         {
             StockDto? stock = await _stockManager.GetStockAsync(id);
