@@ -5,10 +5,10 @@ namespace FinPulse.BL;
 public class StockUpdateDto
 {
     [Required]
-    [MaxLength(10, ErrorMessage = "Symbol cannot be longer than 10 characters.")]
+    [MaxLength(10, ErrorMessage = "Symbol cannot be over 10 characters.")]
     public string Symbol { get; set; } = string.Empty;
     [Required]
-    [MaxLength(10, ErrorMessage = "Company name cannot be longer than 10 characters.")]
+    [MaxLength(15, ErrorMessage = "Company name cannot be over 15 characters.")]
     public string CompanyName { get; set; } = string.Empty;
     [Required]
     [Range(1,1000000000)]
@@ -17,7 +17,7 @@ public class StockUpdateDto
     [Range(0,100)]
     public decimal LastDiv { get; set; }
     [Required]
-    [MaxLength(10, ErrorMessage = "Industry cannot be longer than 10 characters.")]
+    [MaxLength(10, ErrorMessage = "Industry cannot be over 10 characters.")]
     public string Industry { get; set; } = string.Empty;
     [Range(1,5000000000)]
     public long MarketCap { get; set; }
