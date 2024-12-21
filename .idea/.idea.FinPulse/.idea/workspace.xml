@@ -10,17 +10,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b26f06ac-6a19-4e6d-920d-e3b1764a6295" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FinPulse/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FinPulse/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse.BL/Dtos/Comment/CommentReadDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.BL/Dtos/Comment/CommentDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse.BL/Dtos/Stock/StockDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.BL/Dtos/Stock/StockDto.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FinPulse.BL/Managers/Comments/CommentManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.BL/Managers/Comments/CommentManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FinPulse.BL/Managers/Comments/ICommentManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.BL/Managers/Comments/ICommentManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse.BL/Managers/Stocks/IStockManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.BL/Managers/Stocks/IStockManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse.BL/Managers/Stocks/StockManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.BL/Managers/Stocks/StockManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Repository/Comments/CommentRepo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.DAL/Repository/Comments/CommentRepo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FinPulse.DAL/Repository/Comments/ICommentRepo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse.DAL/Repository/Comments/ICommentRepo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FinPulse/Controllers/CommentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse/Controllers/CommentController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse/Controllers/StockController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse/Controllers/StockController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FinPulse/finpulse.db" beforeDir="false" afterPath="$PROJECT_DIR$/FinPulse/finpulse.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +137,7 @@
       <workItem from="1734223674163" duration="2705000" />
       <workItem from="1734276787914" duration="12000" />
       <workItem from="1734276809601" duration="7385000" />
-      <workItem from="1734799520028" duration="321000" />
+      <workItem from="1734799520028" duration="1316000" />
     </task>
     <servers />
   </component>

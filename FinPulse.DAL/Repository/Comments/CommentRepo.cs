@@ -26,18 +26,9 @@ public class CommentRepo : ICommentRepo
          await _context.Comments.AddAsync(comment);
     }
 
-    public async Task DeleteCommentAsync(int id)
+    public void DeleteCommentAsync(Comment comment)
     {
-        var comment = await _context.Comments.FindAsync(id);
-        if (comment != null)
-        {
-            _context.Comments.Remove(comment);
-        }
-        else
-        {
-            throw new Exception("Comment not found.");
-        }
-        
+        _context.Comments.Remove(comment);
     }
 
     public Task<int> SaveChanges()

@@ -69,18 +69,13 @@ namespace FinPulse.Controllers
         #region DeleteComment
 
         [HttpDelete]
-        [Route("DeleteComment/{id:int}")]
+        [Route("{id:int}")]
         public async Task<ActionResult> DeleteComment(int id)
         {
-            try
-            {
-                await commentManager.DeleteCommentByIdAsync(id);
-                return Ok("Comment deleted successfully.");
-            }
-            catch (Exception ex)
-            {
-                return NotFound("Can not delete comment.");
-            }
+            bool isSuccessful = await commentManager.DeleteCommentByIdAsync(id);
+            if(!isSuccessful) return NotFound("Comment not found.");
+           
+            return NoContent();
         }
         #endregion
     }

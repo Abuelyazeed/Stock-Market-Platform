@@ -84,9 +84,13 @@ public class CommentManager : ICommentManager
         };
     }
     
-    public async Task DeleteCommentByIdAsync(int id)
+    public async Task<bool> DeleteCommentByIdAsync(int id)
     { 
-        await _commentRepo.DeleteCommentAsync(id);
+        Comment? comment = await _commentRepo.GetCommentAsync(id);
+        if(comment == null) return false;
+        
+        _commentRepo.DeleteCommentAsync(comment);
         await _commentRepo.SaveChanges();
+        return true;
     }
 }
