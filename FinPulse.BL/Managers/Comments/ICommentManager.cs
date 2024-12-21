@@ -2,10 +2,10 @@ namespace FinPulse.BL;
 
 public interface ICommentManager
 {
-    Task<List<CommentReadDto>> GetAllCommentsAsync();
-    Task<CommentReadDto> GetCommentByIdAsync(int id);
-    Task CreateCommentAsync(int stockId, CommentCreateDto comment);
+    Task<List<CommentDto>> GetCommentsAsync();
+    Task<CommentDto?> GetCommentAsync(int id);
+    Task<int> CreateCommentAsync(int stockId, CommentCreateDto comment);
     Task DeleteCommentByIdAsync(int id);
     
-    Task<bool> UpdateCommentAsync(int id, CommentUpdateDto comment);
+    Task<CommentDto?> UpdateCommentAsync(int id, CommentUpdateDto comment);
 }

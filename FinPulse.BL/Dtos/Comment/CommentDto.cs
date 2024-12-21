@@ -1,6 +1,6 @@
 namespace FinPulse.BL;
 
-public class CommentReadDto
+public class CommentDto
 {
     public int Id { get; set; }
     public string Title { get; set; } = string.Empty;

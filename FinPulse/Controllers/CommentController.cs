@@ -6,34 +6,28 @@ namespace FinPulse.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CommentController : ControllerBase
+    public class CommentController(ICommentManager commentManager, IStockManager stockManager) : ControllerBase
     {
-        private readonly ICommentManager _commentManager;
-        public CommentController(ICommentManager commentManager)
-        {
-            _commentManager = commentManager;
-        }
-
-        #region GetAll
+        #region GetComments
 
         [HttpGet]
-        public async Task<ActionResult> GetAll()
+        public async Task<ActionResult> GetComments()
         {
-            List<CommentReadDto> comments = await _commentManager.GetAllCommentsAsync();
-            if(comments == null || comments.Count == 0) return NotFound("No comments found.");
+            var comments = await commentManager.GetCommentsAsync();
+            if(comments.Count == 0) return NotFound("No comments.");
             
             return Ok(comments);
         }
 
         #endregion
         
-        #region GetById
+        #region GetComment
 
         [HttpGet]
         [Route("{id:int}")]
-        public async Task<ActionResult> GetById(int id)
+        public async Task<ActionResult> GetComment(int id)
         {
-            CommentReadDto comment = await _commentManager.GetCommentByIdAsync(id);
+            CommentDto? comment = await commentManager.GetCommentAsync(id);
             if(comment == null) return NotFound("No comment found.");
             
             return Ok(comment);
@@ -44,18 +38,17 @@ namespace FinPulse.Controllers
         #region CreateComment
 
         [HttpPost]
-        [Route("CreateComment/{stockId:int}")]
+        [Route("{stockId:int}")]
         public async Task<ActionResult> CreateComment(int stockId,CommentCreateDto comment)
         {
-            try
+            var stock = await stockManager.GetStockAsync(stockId);
+            if (stock == null)
             {
-                await _commentManager.CreateCommentAsync(stockId, comment);
-                return Ok("Comment created successfully.");
+                return NotFound("Stock does not exist");
             }
-            catch (Exception ex)
-            {
-                return NotFound(ex.Message);
-            }
+            var commentId = await commentManager.CreateCommentAsync(stockId, comment);
+            var createdComment = await commentManager.GetCommentAsync(commentId);
+            return CreatedAtAction(nameof(GetComment), new { id = commentId }, createdComment);
         }
 
         #endregion
@@ -63,13 +56,13 @@ namespace FinPulse.Controllers
         #region UpdateComment
 
         [HttpPut]
-        [Route("UpdateComment/{id:int}")]
-        public async Task<ActionResult> UpdateComment(int id, CommentUpdateDto comment)
+        [Route("{id:int}")]
+        public async Task<ActionResult> UpdateComment(int id, CommentUpdateDto commentToUpdate)
         {
-            bool isSuccessful = await _commentManager.UpdateCommentAsync(id, comment);
-            if(!isSuccessful) return BadRequest("Failed to update comment.");
+            var comment = await commentManager.UpdateCommentAsync(id, commentToUpdate);
+            if(comment == null) return BadRequest("Comment not found.");
             
-            return Ok("Comment updated successfully.");
+            return Ok(comment);
         }
         #endregion
         
@@ -81,7 +74,7 @@ namespace FinPulse.Controllers
         {
             try
             {
-                await _commentManager.DeleteCommentByIdAsync(id);
+                await commentManager.DeleteCommentByIdAsync(id);
                 return Ok("Comment deleted successfully.");
             }
             catch (Exception ex)

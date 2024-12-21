@@ -11,12 +11,12 @@ public class CommentRepo : ICommentRepo
         _context = context;
     }
     
-    public async Task<List<Comment>> GetAllCommentsAsync()
+    public async Task<List<Comment>> GetCommentsAsync()
     {
         return await _context.Comments.ToListAsync();
     }
 
-    public async Task<Comment> GetCommentByIdAsync(int id)
+    public async Task<Comment?> GetCommentAsync(int id)
     {
         return await _context.Comments.FindAsync(id);
     }

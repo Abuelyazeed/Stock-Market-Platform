@@ -45,7 +45,8 @@ namespace FinPulse.Controllers
         public async Task<ActionResult> CreateStock(StockCreateDto stock)
         {
             int stockId = await _stockManager.CreateStockAsync(stock);
-            return CreatedAtAction(nameof(GetStock), new { id = stockId }, stock);
+            var createdStock = await _stockManager.GetStockAsync(stockId);
+            return CreatedAtAction(nameof(GetStock), new { id = stockId }, createdStock);
         }
 
         #endregion
@@ -70,7 +71,7 @@ namespace FinPulse.Controllers
         public async Task<ActionResult> DeleteStock(int id)
         {
            bool isSuccessful =  await _stockManager.DeleteStockAsync(id);
-           if(!isSuccessful) return NotFound($"Stock not found.");
+           if(!isSuccessful) return NotFound("Stock not found.");
            
            return NoContent();
         }

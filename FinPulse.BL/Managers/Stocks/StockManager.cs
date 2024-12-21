@@ -25,7 +25,7 @@ public class StockManager : IStockManager
             LastDiv = stock.LastDiv,
             Industry = stock.Industry,
             MarketCap = stock.MarketCap,
-            Comments = stock.Comments.Select(c => new CommentReadDto
+            Comments = stock.Comments.Select(c => new CommentDto
             {
                 Id = c.Id,
                 Title = c.Title,
@@ -52,7 +52,7 @@ public class StockManager : IStockManager
             LastDiv = stock.LastDiv,
             Industry = stock.Industry,
             MarketCap = stock.MarketCap,
-            Comments = stock.Comments.Select(c => new CommentReadDto
+            Comments = stock.Comments.Select(c => new CommentDto
             {
                 Id = c.Id,
                 Title = c.Title,
@@ -82,13 +82,11 @@ public class StockManager : IStockManager
         return stock.Id;
     }
 
-    public async Task<StockDto> UpdateStockAsync(StockUpdateDto stockUpdateDto,int id)
+    public async Task<StockDto?> UpdateStockAsync(StockUpdateDto stockUpdateDto,int id)
     {
         Stock? stock = await _stockRepo.GetStockAsync(id);
-        if (stock == null)
-        {
-            return null;
-        }
+        
+        if(stock == null) return null;
         
         stock.Symbol = stockUpdateDto.Symbol;
         stock.CompanyName = stockUpdateDto.CompanyName;
@@ -108,7 +106,7 @@ public class StockManager : IStockManager
             LastDiv = stock.LastDiv,
             Industry = stock.Industry,
             MarketCap = stock.MarketCap,
-            Comments = stock.Comments.Select(c => new CommentReadDto
+            Comments = stock.Comments.Select(c => new CommentDto
             {
                 Id = c.Id,
                 Title = c.Title,

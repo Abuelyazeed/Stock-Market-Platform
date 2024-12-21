@@ -11,11 +11,11 @@ public class CommentManager : ICommentManager
         _commentRepo = commentRepo;
     }
 
-    public async Task<List<CommentReadDto>> GetAllCommentsAsync()
+    public async Task<List<CommentDto>> GetCommentsAsync()
     {
-        List<Comment> comments = await _commentRepo.GetAllCommentsAsync();
+        List<Comment> comments = await _commentRepo.GetCommentsAsync();
 
-        List<CommentReadDto> commentReadDtos = comments.Select(comment => new CommentReadDto
+        List<CommentDto> commentsDto = comments.Select(comment => new CommentDto
         {
             Id = comment.Id,
             Title = comment.Title,
@@ -25,13 +25,19 @@ public class CommentManager : ICommentManager
 
         }).ToList();
         
-        return commentReadDtos;
+        return commentsDto;
     }
 
-    public async Task<CommentReadDto> GetCommentByIdAsync(int id)
+    public async Task<CommentDto?> GetCommentAsync(int id)
     {
-        Comment commentFromDb = await _commentRepo.GetCommentByIdAsync(id);
-        CommentReadDto comment = new CommentReadDto()
+        Comment? commentFromDb = await _commentRepo.GetCommentAsync(id);
+
+        if (commentFromDb == null)
+        {
+            return null;
+        }
+        
+        CommentDto comment = new CommentDto()
         {
             Id = commentFromDb.Id,
             Title = commentFromDb.Title,
@@ -43,30 +49,39 @@ public class CommentManager : ICommentManager
         return comment;
     }
 
-    public async Task CreateCommentAsync(int stockId, CommentCreateDto Createdcomment)
+    public async Task<int> CreateCommentAsync(int stockId, CommentCreateDto createdComment)
     {
         Comment comment = new Comment()
         {
-            Title = Createdcomment.Title,
-            Content = Createdcomment.Content,
+            Title = createdComment.Title,
+            Content = createdComment.Content,
             CreatedOn = DateTime.Now,
             StockId = stockId,
         };
         
         await _commentRepo.CreateCommentAsync(comment);
         await _commentRepo.SaveChanges();
+        
+        return comment.Id;
     }
 
-    public async Task<bool> UpdateCommentAsync(int id, CommentUpdateDto commentUpdateDto)
+    public async Task<CommentDto?> UpdateCommentAsync(int id, CommentUpdateDto commentUpdateDto)
     {
-        Comment? commentFromDb = await _commentRepo.GetCommentByIdAsync(id);
-        if(commentFromDb == null) return false;
+        Comment? commentFromDb = await _commentRepo.GetCommentAsync(id);
+        if(commentFromDb == null) return null;
 
         commentFromDb.Title = commentUpdateDto.Title;
         commentFromDb.Content = commentUpdateDto.Content;
             
-        int numberOfAffectedRows = await _commentRepo.SaveChanges();
-        return numberOfAffectedRows > 0;
+        await _commentRepo.SaveChanges();
+        return new CommentDto()
+        {
+            Id = commentFromDb.Id,
+            Title = commentFromDb.Title,
+            Content = commentFromDb.Content,
+            CreatedOn = commentFromDb.CreatedOn,
+            StockId = commentFromDb.StockId,
+        };
     }
     
     public async Task DeleteCommentByIdAsync(int id)
