@@ -31,11 +31,11 @@ public class StockRepo : IStockRepo
         //Sort
         stocks = userParams.OrderBy switch
         {
-            "symbol" => userParams.IsDecsending ? stocks.OrderByDescending(s => s.Symbol) : stocks.OrderBy(s => s.Symbol),
+            "companyName" => userParams.IsDecsending ? stocks.OrderByDescending(s => s.CompanyName) : stocks.OrderBy(s => s.CompanyName),
             "marketCap" => userParams.IsDecsending ? stocks.OrderByDescending(s => s.MarketCap) : stocks.OrderBy(s => s.MarketCap),
             "lastDiv" => userParams.IsDecsending ? stocks.OrderByDescending(s => s.LastDiv) : stocks.OrderBy(s => s.LastDiv),
             "purchase" => userParams.IsDecsending ? stocks.OrderByDescending(s => s.Purchase) : stocks.OrderBy(s => s.Purchase),
-            _ => userParams.IsDecsending ? stocks.OrderByDescending(s => s.CompanyName) : stocks.OrderBy(s => s.CompanyName),
+            _ => userParams.IsDecsending ? stocks.OrderByDescending(s => s.Symbol) : stocks.OrderBy(s => s.Symbol),
         };
         //Pagination
         var skipNumber = (userParams.PageNumber - 1) * userParams.PageSize;
