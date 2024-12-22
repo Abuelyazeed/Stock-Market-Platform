@@ -37,8 +37,10 @@ public class StockRepo : IStockRepo
             "purchase" => userParams.IsDecsending ? stocks.OrderByDescending(s => s.Purchase) : stocks.OrderBy(s => s.Purchase),
             _ => userParams.IsDecsending ? stocks.OrderByDescending(s => s.CompanyName) : stocks.OrderBy(s => s.CompanyName),
         };
+        //Pagination
+        var skipNumber = (userParams.PageNumber - 1) * userParams.PageSize;
         
-        return await stocks.ToListAsync();
+        return await stocks.Skip(skipNumber).Take(userParams.PageSize).ToListAsync();
     }
 
     public async Task<Stock?> GetStockAsync(int id)

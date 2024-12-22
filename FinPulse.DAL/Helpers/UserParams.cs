@@ -1,6 +1,6 @@
 namespace FinPulse;
 
-public class UserParams
+public class UserParams : PaginationParams
 {
     public string? Symbol { get; set; } = null;
     public string? CompanyName { get; set; } = null;
