@@ -16,15 +16,25 @@ public class StockRepo : IStockRepo
     {
         var stocks = _context.Stocks.Include(c => c.Comments).AsQueryable();
 
+        //Filter byy symbol
         if (!string.IsNullOrWhiteSpace(userParams.Symbol))
         {
             stocks = stocks.Where(s => s.Symbol.ToLower().Contains(userParams.Symbol.ToLower()));
         }
         
+        //Filter by company name
         if (!string.IsNullOrWhiteSpace(userParams.CompanyName))
         {
             stocks = stocks.Where(s => s.CompanyName.ToLower().Contains(userParams.CompanyName.ToLower()));
         }
+        
+        //Sort
+        stocks = userParams.OrderBy switch
+        {
+            "symbol" => userParams.IsDecsending ? stocks.OrderByDescending(s => s.Symbol) : stocks.OrderBy(s => s.Symbol),
+            "marketCap" => userParams.IsDecsending ? stocks.OrderByDescending(s => s.MarketCap) : stocks.OrderBy(s => s.MarketCap),
+            _ => userParams.IsDecsending ? stocks.OrderByDescending(s => s.CompanyName) : stocks.OrderBy(s => s.CompanyName),
+        };
         
         return await stocks.ToListAsync();
     }
