@@ -58,14 +58,14 @@ namespace FinPulse.DAL.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("LastDiv")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<double>("LastDiv")
+                        .HasColumnType("REAL");
 
                     b.Property<long>("MarketCap")
                         .HasColumnType("INTEGER");
 
-                    b.Property<decimal>("Purchase")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<double>("Purchase")
+                        .HasColumnType("REAL");
 
                     b.Property<string>("Symbol")
                         .IsRequired()
@@ -81,9 +81,9 @@ namespace FinPulse.DAL.Data.Migrations
                             Id = 1,
                             CompanyName = "Apple Inc.",
                             Industry = "Technology",
-                            LastDiv = 0.22m,
-                            MarketCap = 2500000000000L,
-                            Purchase = 150.25m,
+                            LastDiv = 0.22,
+                            MarketCap = 3000000000L,
+                            Purchase = 150.25,
                             Symbol = "AAPL"
                         },
                         new
@@ -91,9 +91,9 @@ namespace FinPulse.DAL.Data.Migrations
                             Id = 2,
                             CompanyName = "Microsoft Corporation",
                             Industry = "Technology",
-                            LastDiv = 0.56m,
-                            MarketCap = 2300000000000L,
-                            Purchase = 305.12m,
+                            LastDiv = 0.56000000000000005,
+                            MarketCap = 2300000000L,
+                            Purchase = 305.12,
                             Symbol = "MSFT"
                         },
                         new
@@ -101,10 +101,20 @@ namespace FinPulse.DAL.Data.Migrations
                             Id = 3,
                             CompanyName = "Tesla Inc.",
                             Industry = "Automotive",
-                            LastDiv = 0.00m,
-                            MarketCap = 900000000000L,
-                            Purchase = 750.50m,
+                            LastDiv = 0.0,
+                            MarketCap = 1000000000L,
+                            Purchase = 750.5,
                             Symbol = "TSLA"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CompanyName = "Amazon",
+                            Industry = "Technology",
+                            LastDiv = 0.0,
+                            MarketCap = 2600000000L,
+                            Purchase = 750.5,
+                            Symbol = "AMZN"
                         });
                 });
 

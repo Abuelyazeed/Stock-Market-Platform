@@ -21,8 +21,8 @@ namespace FinPulse.DAL.Data.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Symbol = table.Column<string>(type: "TEXT", nullable: false),
                     CompanyName = table.Column<string>(type: "TEXT", nullable: false),
-                    Purchase = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
-                    LastDiv = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
+                    Purchase = table.Column<double>(type: "REAL", nullable: false),
+                    LastDiv = table.Column<double>(type: "REAL", nullable: false),
                     Industry = table.Column<string>(type: "TEXT", nullable: false),
                     MarketCap = table.Column<long>(type: "INTEGER", nullable: false)
                 },
@@ -58,9 +58,10 @@ namespace FinPulse.DAL.Data.Migrations
                 columns: new[] { "Id", "CompanyName", "Industry", "LastDiv", "MarketCap", "Purchase", "Symbol" },
                 values: new object[,]
                 {
-                    { 1, "Apple Inc.", "Technology", 0.22m, 2500000000000L, 150.25m, "AAPL" },
-                    { 2, "Microsoft Corporation", "Technology", 0.56m, 2300000000000L, 305.12m, "MSFT" },
-                    { 3, "Tesla Inc.", "Automotive", 0.00m, 900000000000L, 750.50m, "TSLA" }
+                    { 1, "Apple Inc.", "Technology", 0.22, 3000000000L, 150.25, "AAPL" },
+                    { 2, "Microsoft Corporation", "Technology", 0.56000000000000005, 2300000000L, 305.12, "MSFT" },
+                    { 3, "Tesla Inc.", "Automotive", 0.0, 1000000000L, 750.5, "TSLA" },
+                    { 4, "Amazon", "Technology", 0.0, 2600000000L, 750.5, "AMZN" }
                 });
 
             migrationBuilder.CreateIndex(
