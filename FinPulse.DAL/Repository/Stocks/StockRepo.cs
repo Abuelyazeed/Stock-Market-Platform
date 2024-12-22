@@ -28,15 +28,28 @@ public class StockRepo : IStockRepo
             stocks = stocks.Where(s => s.CompanyName.ToLower().Contains(userParams.CompanyName.ToLower()));
         }
         
-        //Sort
-        stocks = userParams.OrderBy switch
+        var stocksList = await stocks.ToListAsync();
+        //Sort in memory
+        stocksList = userParams.OrderBy switch
         {
-            "symbol" => userParams.IsDecsending ? stocks.OrderByDescending(s => s.Symbol) : stocks.OrderBy(s => s.Symbol),
-            "marketCap" => userParams.IsDecsending ? stocks.OrderByDescending(s => s.MarketCap) : stocks.OrderBy(s => s.MarketCap),
-            _ => userParams.IsDecsending ? stocks.OrderByDescending(s => s.CompanyName) : stocks.OrderBy(s => s.CompanyName),
+            "symbol" => userParams.IsDecsending 
+                ? stocksList.OrderByDescending(s => s.Symbol).ToList() 
+                : stocksList.OrderBy(s => s.Symbol).ToList(),
+            "marketCap" => userParams.IsDecsending 
+                ? stocksList.OrderByDescending(s => s.MarketCap).ToList() 
+                : stocksList.OrderBy(s => s.MarketCap).ToList(),
+            "lastDiv" => userParams.IsDecsending 
+                ? stocksList.OrderByDescending(s => s.LastDiv).ToList() 
+                : stocksList.OrderBy(s => s.LastDiv).ToList(),
+            "purchase" => userParams.IsDecsending 
+                ? stocksList.OrderByDescending(s => s.Purchase).ToList() 
+                : stocksList.OrderBy(s => s.Purchase).ToList(),
+            _ => userParams.IsDecsending 
+                ? stocksList.OrderByDescending(s => s.CompanyName).ToList() 
+                : stocksList.OrderBy(s => s.CompanyName).ToList(),
         };
-        
-        return await stocks.ToListAsync();
+
+        return stocksList;
     }
 
     public async Task<Stock?> GetStockAsync(int id)
