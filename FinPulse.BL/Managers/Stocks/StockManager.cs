@@ -11,9 +11,9 @@ public class StockManager : IStockManager
         _stockRepo = stockRepo;
     }
 
-    public async Task<List<StockDto>> GetStocksAsync()
+    public async Task<List<StockDto>> GetStocksAsync(UserParams userParams)
     {
-        List<Stock> stocks = await _stockRepo.GetStocksAsync();
+        List<Stock> stocks = await _stockRepo.GetStocksAsync(userParams);
         
         //List to List
         List<StockDto> stockReadDtos = stocks.Select(stock => new StockDto

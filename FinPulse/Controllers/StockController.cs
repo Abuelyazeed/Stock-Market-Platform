@@ -16,9 +16,9 @@ namespace FinPulse.Controllers
         #region GetStocks
         
         [HttpGet]
-        public async Task<ActionResult<List<StockDto>>> GetStocks()
+        public async Task<ActionResult<List<StockDto>>> GetStocks([FromQuery] UserParams userParams)
         {
-            var stocks = await _stockManager.GetStocksAsync();
+            var stocks = await _stockManager.GetStocksAsync(userParams);
             // if (stocks == null || stocks.Count == 0) return NotFound("No stocks found.");
         
             return Ok(stocks);

@@ -12,11 +12,21 @@ public class StockRepo : IStockRepo
     }
 
 
-    public async Task<List<Stock>> GetStocksAsync()
+    public async Task<List<Stock>> GetStocksAsync(UserParams userParams)
     {
-        return await _context.Stocks
-            .Include(c => c.Comments)
-            .ToListAsync();
+        var stocks = _context.Stocks.Include(c => c.Comments).AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(userParams.Symbol))
+        {
+            stocks = stocks.Where(s => s.Symbol.ToLower().Contains(userParams.Symbol.ToLower()));
+        }
+        
+        if (!string.IsNullOrWhiteSpace(userParams.CompanyName))
+        {
+            stocks = stocks.Where(s => s.CompanyName.ToLower().Contains(userParams.CompanyName.ToLower()));
+        }
+        
+        return await stocks.ToListAsync();
     }
 
     public async Task<Stock?> GetStockAsync(int id)
