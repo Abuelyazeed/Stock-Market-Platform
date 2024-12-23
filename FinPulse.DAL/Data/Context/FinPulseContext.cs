@@ -1,8 +1,9 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace FinPulse.DAL;
 
-public class FinPulseContext(DbContextOptions<FinPulseContext> options) : DbContext(options)
+public class FinPulseContext(DbContextOptions<FinPulseContext> options) : IdentityDbContext<AppUser>(options)
 {
     public DbSet<Stock> Stocks { get; set; }
     public DbSet<Comment> Comments { get; set; }
