@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -58,7 +59,25 @@ public class FinPulseContext(DbContextOptions<FinPulseContext> options) : Identi
             }
         );
 
-        #endregion 
-        
+        #endregion
+
+        #region Identity Roles
+
+        List<IdentityRole> roles = new List<IdentityRole>
+        {
+            new IdentityRole
+            {
+                Name = "Admin",
+                NormalizedName = "ADMIN"
+            },
+            new IdentityRole
+            {
+                Name = "User",
+                NormalizedName = "USER"
+            },
+        };
+        modelBuilder.Entity<IdentityRole>().HasData(roles);
+        #endregion
+
     }
 }
