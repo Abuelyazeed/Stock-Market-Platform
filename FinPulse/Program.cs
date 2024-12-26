@@ -1,5 +1,7 @@
+using System.Text;
 using FinPulse.BL;
 using FinPulse.DAL;
+using FinPulse.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -12,9 +14,6 @@ var builder = WebApplication.CreateBuilder(args);
 #region Default Services
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 #endregion
 
@@ -41,6 +40,12 @@ builder.Services.AddScoped<ICommentManager, CommentManager>();
 
 #endregion
 
+#region Token Service
+
+builder.Services.AddScoped<ITokenService, TokenService>();
+
+#endregion
+
 #region Identity
 
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
@@ -53,24 +58,26 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
     })
     .AddEntityFrameworkStores<FinPulseContext>();
 
-#endregion
-
-#region JWT
-
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme =
+        options.DefaultChallengeScheme =
+            options.DefaultForbidScheme =
+                options.DefaultScheme =
+                    options.DefaultSignInScheme =
+                        options.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
     {
-        var signingKey = builder.Configuration["JWT:SigningKey"] ?? throw new Exception("TokenKey not found");
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidIssuer = builder.Configuration["JWT:Issuer"],
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidAudience = builder.Configuration["JWT:Audience"],
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(signingKey)),
-        };
-    });
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(
+            System.Text.Encoding.UTF8.GetBytes(builder.Configuration["SigningKey"])
+        )
+    };
+});
 
 #endregion
 
@@ -79,14 +86,6 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 
 #region Middlewares
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();

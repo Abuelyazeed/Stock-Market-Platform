@@ -1,10 +1,12 @@
 using FinPulse.BL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinPulse.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class StockController : ControllerBase
     {
         private readonly IStockManager _stockManager;
