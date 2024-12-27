@@ -18,9 +18,8 @@ namespace FinPulse.Controllers
         [HttpGet]
         public async Task<ActionResult> GetPortfolio()
         {
-            var username = User.getUsername();
-            var appUser = await userManager.FindByNameAsync(username);
-            var userPortfolio = await portfolioManager.GetPorfolioAsync(appUser);
+            var userId = User.getUserId();
+            var userPortfolio = await portfolioManager.GetPorfolioAsync(userId);
             
             return Ok(userPortfolio);
         }

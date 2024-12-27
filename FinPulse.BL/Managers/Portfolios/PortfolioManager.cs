@@ -11,9 +11,9 @@ public class PortfolioManager : IPortfolioManager
     {
         _portfolioRepo = portfolioRepo;
     }
-    public async Task<List<StockDto>> GetPorfolioAsync(AppUser user)
+    public async Task<List<StockDto>> GetPorfolioAsync(string userId)
     {
-        List<Stock> stocks = await _portfolioRepo.GetPortfolio(user);
+        List<Stock> stocks = await _portfolioRepo.GetPortfolio(userId);
         
         List<StockDto> stocksDto = stocks.Select(stock => new StockDto
         {

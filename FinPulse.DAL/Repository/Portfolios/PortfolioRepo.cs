@@ -11,9 +11,9 @@ public class PortfolioRepo : IPortfolioRepo
         _context = context;
     }
     
-    public async Task<List<Stock>> GetPortfolio(AppUser user)
+    public async Task<List<Stock>> GetPortfolio(string userId)
     {
-        return await _context.Portfolios.Where(x => x.AppUserId == user.Id)
+        return await _context.Portfolios.Where(x => x.AppUserId == userId)
             .Include(x => x.Stock)
             .ThenInclude(x => x.Comments)
             .Select(x => x.Stock)

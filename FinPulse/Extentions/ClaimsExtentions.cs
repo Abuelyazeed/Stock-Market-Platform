@@ -12,4 +12,12 @@ public static class ClaimsExtentions
 
         return username;
     }
+    
+    public static string getUserId(this ClaimsPrincipal user)
+    {
+        var userId = user.FindFirstValue(ClaimTypes.NameIdentifier)
+                               ?? throw new Exception("Cannot get user id from token");
+
+        return userId;
+    }
 }
