@@ -1,4 +1,5 @@
 using FinPulse.BL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,6 +7,7 @@ namespace FinPulse.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CommentController(ICommentManager commentManager, IStockManager stockManager) : ControllerBase
     {
         #region GetComments
@@ -14,7 +16,6 @@ namespace FinPulse.Controllers
         public async Task<ActionResult> GetComments()
         {
             var comments = await commentManager.GetCommentsAsync();
-            if(comments.Count == 0) return NotFound("No comments.");
             
             return Ok(comments);
         }
@@ -28,7 +29,7 @@ namespace FinPulse.Controllers
         public async Task<ActionResult> GetComment(int id)
         {
             CommentDto? comment = await commentManager.GetCommentAsync(id);
-            if(comment == null) return NotFound("No comment found.");
+            if(comment == null) return NotFound("Comment not found.");
             
             return Ok(comment);
         }
