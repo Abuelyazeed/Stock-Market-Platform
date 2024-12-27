@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -8,10 +9,30 @@ public class FinPulseContext(DbContextOptions<FinPulseContext> options) : Identi
 {
     public DbSet<Stock> Stocks { get; set; }
     public DbSet<Comment> Comments { get; set; }
+    public DbSet<Portfolio> Portfolios { get; set; }
+    
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        #region Portfolio many to many
+
+        //Set primary key
+        modelBuilder.Entity<Portfolio>().HasKey(x => new { x.AppUserId, x.StockId });
+
+        modelBuilder.Entity<Portfolio>()
+            .HasOne(x => x.AppUser)
+            .WithMany(x => x.Portfolios)
+            .HasForeignKey(x => x.AppUserId);
+        
+        modelBuilder.Entity<Portfolio>()
+            .HasOne(x => x.Stock)
+            .WithMany(x => x.Portfolios)
+            .HasForeignKey(x => x.StockId);
+
+        #endregion
+        
 
         #region Seeding stock data
 
