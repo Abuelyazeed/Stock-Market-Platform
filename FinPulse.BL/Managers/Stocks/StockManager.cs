@@ -16,7 +16,7 @@ public class StockManager : IStockManager
         List<Stock> stocks = await _stockRepo.GetStocksAsync(userParams);
         
         //List to List
-        List<StockDto> stockReadDtos = stocks.Select(stock => new StockDto
+        List<StockDto> stocksDto = stocks.Select(stock => new StockDto
         {
             Id = stock.Id,
             Symbol = stock.Symbol,
@@ -35,7 +35,7 @@ public class StockManager : IStockManager
             }).ToList(),
         }).ToList();
 
-        return stockReadDtos;
+        return stocksDto;
     }
 
     public async Task<StockDto?> GetStockAsync(int id)

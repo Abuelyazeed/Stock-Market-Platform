@@ -1,6 +1,8 @@
 using System.Text;
 using FinPulse.BL;
+using FinPulse.BL.Managers.Portfolios;
 using FinPulse.DAL;
+using FinPulse.DAL.Repository.Portfolio;
 using FinPulse.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -30,6 +32,7 @@ builder.Services.AddDbContext<FinPulseContext>(options =>
 
 builder.Services.AddScoped<IStockRepo, StockRepo>();
 builder.Services.AddScoped<ICommentRepo, CommentRepo>();
+builder.Services.AddScoped<IPortfolioRepo, PortfolioRepo>();
 
 #endregion
 
@@ -37,6 +40,7 @@ builder.Services.AddScoped<ICommentRepo, CommentRepo>();
 
 builder.Services.AddScoped<IStockManager, StockManager>();
 builder.Services.AddScoped<ICommentManager, CommentManager>();
+builder.Services.AddScoped<IPortfolioManager, PortfolioManager>();
 
 #endregion
 
