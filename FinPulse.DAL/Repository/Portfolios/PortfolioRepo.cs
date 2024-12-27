@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace FinPulse.DAL.Repository.Portfolio;
+namespace FinPulse.DAL;
 
 public class PortfolioRepo : IPortfolioRepo
 {
@@ -18,5 +18,12 @@ public class PortfolioRepo : IPortfolioRepo
             .ThenInclude(x => x.Comments)
             .Select(x => x.Stock)
             .ToListAsync();
+    }
+
+    public async Task<Portfolio> AddStockToPortfolio(Portfolio portfolio)
+    {
+         await _context.Portfolios.AddAsync(portfolio);
+         await _context.SaveChangesAsync();
+         return portfolio;
     }
 }

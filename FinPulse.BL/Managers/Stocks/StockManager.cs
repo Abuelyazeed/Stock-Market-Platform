@@ -63,6 +63,31 @@ public class StockManager : IStockManager
         };
     }
 
+    // public async Task<StockDto?> GetStockBySymbolAsync(string symbol)
+    // {
+    //     Stock? stock = await _stockRepo.GetStockBySymbol(symbol);
+    //     if (stock == null) return null;
+    //
+    //     return new StockDto()
+    //     {
+    //         Id = stock.Id,
+    //         Symbol = stock.Symbol,
+    //         CompanyName = stock.CompanyName,
+    //         Purchase = stock.Purchase,
+    //         LastDiv = stock.LastDiv,
+    //         Industry = stock.Industry,
+    //         MarketCap = stock.MarketCap,
+    //         Comments = stock.Comments.Select(c => new CommentDto
+    //         {
+    //             Id = c.Id,
+    //             Title = c.Title,
+    //             Content = c.Content,
+    //             CreatedOn = c.CreatedOn,
+    //             StockId = c.StockId
+    //         }).ToList(),
+    //     };
+    // }
+
     public async Task<int> CreateStockAsync(StockCreateDto stockToCreate)
     {
         Stock stock = new Stock()

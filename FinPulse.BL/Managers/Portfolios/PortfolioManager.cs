@@ -1,7 +1,6 @@
 using FinPulse.DAL;
-using FinPulse.DAL.Repository.Portfolio;
 
-namespace FinPulse.BL.Managers.Portfolios;
+namespace FinPulse.BL;
 
 public class PortfolioManager : IPortfolioManager
 {
@@ -11,7 +10,7 @@ public class PortfolioManager : IPortfolioManager
     {
         _portfolioRepo = portfolioRepo;
     }
-    public async Task<List<StockDto>> GetPorfolioAsync(string userId)
+    public async Task<List<StockDto>> GetPortfolioAsync(string userId)
     {
         List<Stock> stocks = await _portfolioRepo.GetPortfolio(userId);
         
@@ -35,5 +34,10 @@ public class PortfolioManager : IPortfolioManager
         }).ToList();
 
         return stocksDto;
+    }
+
+    public async Task<Portfolio> AddStockToPortfolioAsync(Portfolio portfolio)
+    {
+        return await _portfolioRepo.AddStockToPortfolio(portfolio);
     }
 }

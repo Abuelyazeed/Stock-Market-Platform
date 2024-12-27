@@ -1,8 +1,6 @@
 using System.Text;
 using FinPulse.BL;
-using FinPulse.BL.Managers.Portfolios;
 using FinPulse.DAL;
-using FinPulse.DAL.Repository.Portfolio;
 using FinPulse.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -78,7 +76,7 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = false,
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(
-            System.Text.Encoding.UTF8.GetBytes(builder.Configuration["SigningKey"])
+            Encoding.UTF8.GetBytes(builder.Configuration["SigningKey"] ?? throw new InvalidOperationException())
         )
     };
 });
