@@ -46,9 +46,9 @@ namespace FinPulse.Controllers
         [HttpPost]
         public async Task<ActionResult> CreateStock(StockCreateDto stock)
         {
-            int stockId = await _stockManager.CreateStockAsync(stock);
-            var createdStock = await _stockManager.GetStockAsync(stockId);
-            return CreatedAtAction(nameof(GetStock), new { id = stockId }, createdStock);
+            var createdStock = await _stockManager.CreateStockAsync(stock);
+            //var createdStock = await _stockManager.GetStockAsync(stockId);
+            return CreatedAtAction(nameof(GetStock), new { id = createdStock.Id }, createdStock);
         }
 
         #endregion

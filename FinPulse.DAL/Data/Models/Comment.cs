@@ -10,4 +10,8 @@ public class Comment
     public int StockId { get; set; }
     //Navigation property
     public Stock? Stock { get; set; }
+
+    public string? AppUserId { get; set; }
+    //Navigation property
+    public AppUser? AppUser { get; set; }
 }

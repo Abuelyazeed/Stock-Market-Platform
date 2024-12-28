@@ -30,6 +30,7 @@ namespace FinPulse.Controllers
             
             if(stock == null) return BadRequest("Stock not found");
             
+            //Get user portfolio to check if stock already exists there
             var userPortfolio = await portfolioManager.GetPortfolioAsync(userId);
 
             if (userPortfolio.Any(x => x.Symbol.ToLower() == symbol.ToLower()))
@@ -43,10 +44,8 @@ namespace FinPulse.Controllers
                 AppUserId = userId
             };
 
-            var portfolio = portfolioManager.AddStockToPortfolioAsync(addPortfolio);
-
-
-
+            var portfolio = await portfolioManager.AddStockToPortfolioAsync(addPortfolio);
+            
             return Created();
 
         }

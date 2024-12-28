@@ -31,6 +31,7 @@ public class StockManager : IStockManager
                 Title = c.Title,
                 Content = c.Content,
                 CreatedOn = c.CreatedOn,
+                CreatedBy = c.AppUser!.UserName,
                 StockId = c.StockId
             }).ToList(),
         }).ToList();
@@ -58,6 +59,7 @@ public class StockManager : IStockManager
                 Title = c.Title,
                 Content = c.Content,
                 CreatedOn = c.CreatedOn,
+                CreatedBy = c.AppUser!.UserName,
                 StockId = c.StockId
             }).ToList(),
         };
@@ -88,7 +90,7 @@ public class StockManager : IStockManager
     //     };
     // }
 
-    public async Task<int> CreateStockAsync(StockCreateDto stockToCreate)
+    public async Task<StockDto> CreateStockAsync(StockCreateDto stockToCreate)
     {
         Stock stock = new Stock()
         {
@@ -104,7 +106,25 @@ public class StockManager : IStockManager
         await _stockRepo.CreateStockAsync(stock);
         await _stockRepo.SaveChangesAync();
 
-        return stock.Id;
+        return new StockDto()
+        {
+            Id = stock.Id,
+            Symbol = stock.Symbol,
+            CompanyName = stock.CompanyName,
+            Purchase = stock.Purchase,
+            LastDiv = stock.LastDiv,
+            Industry = stock.Industry,
+            MarketCap = stock.MarketCap,
+            Comments = stock.Comments.Select(c => new CommentDto
+            {
+                Id = c.Id,
+                Title = c.Title,
+                Content = c.Content,
+                CreatedOn = c.CreatedOn,
+                CreatedBy = c.AppUser!.UserName,
+                StockId = c.StockId
+            }).ToList(),
+        };
     }
 
     public async Task<StockDto?> UpdateStockAsync(StockUpdateDto stockUpdateDto,int id)

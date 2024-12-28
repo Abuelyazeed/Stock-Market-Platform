@@ -21,6 +21,7 @@ public class CommentManager : ICommentManager
             Title = comment.Title,
             Content = comment.Content,
             CreatedOn = comment.CreatedOn,
+            CreatedBy = comment.AppUser!.UserName,
             StockId = comment.StockId,
 
         }).ToList();
@@ -43,26 +44,38 @@ public class CommentManager : ICommentManager
             Title = commentFromDb.Title,
             Content = commentFromDb.Content,
             CreatedOn = commentFromDb.CreatedOn,
+            CreatedBy = commentFromDb.AppUser!.UserName,
             StockId = commentFromDb.StockId,
         };
         
         return comment;
     }
 
-    public async Task<int> CreateCommentAsync(int stockId, CommentCreateDto createdComment)
+    public async Task<CommentDto> CreateCommentAsync(int stockId, CommentCreateDto createdComment,string userId)
     {
-        Comment comment = new Comment()
+        Comment commentFromDb = new Comment()
         {
             Title = createdComment.Title,
             Content = createdComment.Content,
             CreatedOn = DateTime.Now,
             StockId = stockId,
+            AppUserId = userId
         };
         
-        await _commentRepo.CreateCommentAsync(comment);
+        await _commentRepo.CreateCommentAsync(commentFromDb);
         await _commentRepo.SaveChangesAsync();
         
-        return comment.Id;
+        CommentDto commentDto = new CommentDto()
+        {
+            Id = commentFromDb.Id,
+            Title = commentFromDb.Title,
+            Content = commentFromDb.Content,
+            CreatedOn = commentFromDb.CreatedOn,
+            CreatedBy = commentFromDb.AppUser!.UserName,
+            StockId = commentFromDb.StockId,
+        };
+        
+        return commentDto;
     }
 
     public async Task<CommentDto?> UpdateCommentAsync(int id, CommentUpdateDto commentUpdateDto)

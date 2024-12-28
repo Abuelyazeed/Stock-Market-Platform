@@ -14,7 +14,10 @@ public class StockRepo : IStockRepo
 
     public async Task<List<Stock>> GetStocksAsync(UserParams userParams)
     {
-        var stocks = _context.Stocks.Include(c => c.Comments).AsQueryable();
+        var stocks = _context.Stocks
+            .Include(c => c.Comments)
+            .ThenInclude(x => x.AppUser)
+            .AsQueryable();
 
         //Filter byy symbol
         if (!string.IsNullOrWhiteSpace(userParams.Symbol))
@@ -47,6 +50,7 @@ public class StockRepo : IStockRepo
     {
         return await _context.Stocks
             .Include(c => c.Comments)
+            .ThenInclude(x => x.AppUser)
             .FirstOrDefaultAsync(x => x.Id == id);
     }
 

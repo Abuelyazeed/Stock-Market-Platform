@@ -1,6 +1,9 @@
 using FinPulse.BL;
+using FinPulse.DAL;
+using FinPulse.Extentions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinPulse.Controllers
@@ -8,7 +11,7 @@ namespace FinPulse.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class CommentController(ICommentManager commentManager, IStockManager stockManager) : ControllerBase
+    public class CommentController(ICommentManager commentManager, IStockManager stockManager, UserManager<AppUser> userManager) : ControllerBase
     {
         #region GetComments
 
@@ -42,14 +45,18 @@ namespace FinPulse.Controllers
         [Route("{stockId:int}")]
         public async Task<ActionResult> CreateComment(int stockId,CommentCreateDto comment)
         {
+            //get user
+            var userId = User.getUserId();
+            
+            
             var stock = await stockManager.GetStockAsync(stockId);
             if (stock == null)
             {
                 return NotFound("Stock does not exist");
             }
-            var commentId = await commentManager.CreateCommentAsync(stockId, comment);
-            var createdComment = await commentManager.GetCommentAsync(commentId);
-            return CreatedAtAction(nameof(GetComment), new { id = commentId }, createdComment);
+            
+            var createdComment = await commentManager.CreateCommentAsync(stockId, comment, userId);
+            return CreatedAtAction(nameof(GetComment), new { id = createdComment.Id }, createdComment);
         }
 
         #endregion

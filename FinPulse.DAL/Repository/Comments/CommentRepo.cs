@@ -13,12 +13,12 @@ public class CommentRepo : ICommentRepo
     
     public async Task<List<Comment>> GetCommentsAsync()
     {
-        return await _context.Comments.ToListAsync();
+        return await _context.Comments.Include(x => x.AppUser).ToListAsync();
     }
 
     public async Task<Comment?> GetCommentAsync(int id)
     {
-        return await _context.Comments.FindAsync(id);
+        return await _context.Comments.Include(x => x.AppUser).FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task CreateCommentAsync(Comment comment)
