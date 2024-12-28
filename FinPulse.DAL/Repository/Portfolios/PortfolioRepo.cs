@@ -11,7 +11,7 @@ public class PortfolioRepo : IPortfolioRepo
         _context = context;
     }
     
-    public async Task<List<Stock>> GetPortfolio(string userId)
+    public async Task<List<Stock>> GetPortfolioStocksAsync(string userId)
     {
         return await _context.Portfolios.Where(x => x.AppUserId == userId)
             .Include(x => x.Stock)
@@ -20,10 +20,29 @@ public class PortfolioRepo : IPortfolioRepo
             .ToListAsync();
     }
 
-    public async Task<Portfolio> AddStockToPortfolio(Portfolio portfolio)
+    public async Task<Portfolio?> GetPortfolioAsync(string userId, string symbol)
+    {
+        var portfolio = await _context.Portfolios
+            .FirstOrDefaultAsync(x => x.AppUserId == userId && x.Stock.Symbol.ToLower() == symbol.ToLower());
+        if (portfolio == null) return null;
+
+        return portfolio;
+    }
+
+    public async Task<Portfolio> AddStockToPortfolioAsync(Portfolio portfolio)
     {
          await _context.Portfolios.AddAsync(portfolio);
-         await _context.SaveChangesAsync();
          return portfolio;
+    }
+
+    public void RemoveStockFromPortfolio(Portfolio portfolio)
+    {
+        _context.Remove(portfolio);
+    }
+
+
+    public async Task<int> SaveChangesAsync()
+    {
+        return await _context.SaveChangesAsync();
     }
 }

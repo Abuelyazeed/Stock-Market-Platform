@@ -60,7 +60,7 @@ public class CommentManager : ICommentManager
         };
         
         await _commentRepo.CreateCommentAsync(comment);
-        await _commentRepo.SaveChanges();
+        await _commentRepo.SaveChangesAsync();
         
         return comment.Id;
     }
@@ -73,7 +73,7 @@ public class CommentManager : ICommentManager
         commentFromDb.Title = commentUpdateDto.Title;
         commentFromDb.Content = commentUpdateDto.Content;
             
-        await _commentRepo.SaveChanges();
+        await _commentRepo.SaveChangesAsync();
         return new CommentDto()
         {
             Id = commentFromDb.Id,
@@ -89,8 +89,8 @@ public class CommentManager : ICommentManager
         Comment? comment = await _commentRepo.GetCommentAsync(id);
         if(comment == null) return false;
         
-        _commentRepo.DeleteCommentAsync(comment);
-        await _commentRepo.SaveChanges();
+        _commentRepo.DeleteComment(comment);
+        await _commentRepo.SaveChangesAsync();
         return true;
     }
 }

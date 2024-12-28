@@ -50,5 +50,16 @@ namespace FinPulse.Controllers
             return Created();
 
         }
+
+        [HttpDelete("{symbol}")]
+        public async Task<ActionResult> RemoveStockFromPortfolio(string symbol)
+        {
+            var userId = User.getUserId();
+
+            bool isSuccessful = await portfolioManager.RemoveStockFromPortfolioAsync(userId, symbol);
+            if(!isSuccessful) return NotFound("Failed to remove stock");
+            
+            return NoContent();
+        }
     }
 }

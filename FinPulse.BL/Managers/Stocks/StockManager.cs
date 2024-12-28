@@ -102,7 +102,7 @@ public class StockManager : IStockManager
 
         };
         await _stockRepo.CreateStockAsync(stock);
-        await _stockRepo.SaveChanges();
+        await _stockRepo.SaveChangesAync();
 
         return stock.Id;
     }
@@ -120,7 +120,7 @@ public class StockManager : IStockManager
         stock.Industry = stockUpdateDto.Industry;
         stock.MarketCap = stockUpdateDto.MarketCap;
 
-        await _stockRepo.SaveChanges();
+        await _stockRepo.SaveChangesAync();
         
         return new StockDto
         {
@@ -147,8 +147,7 @@ public class StockManager : IStockManager
         Stock? stock = await _stockRepo.GetStockAsync(id);
         if (stock == null) return false;
         
-        _stockRepo.DeleteStockAsync(stock);
-        await _stockRepo.SaveChanges();
-        return true;
+        _stockRepo.DeleteStock(stock);
+        return await _stockRepo.SaveChangesAync() > 0;
     }
 }

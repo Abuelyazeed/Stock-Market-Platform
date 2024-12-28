@@ -26,12 +26,12 @@ public class CommentRepo : ICommentRepo
          await _context.Comments.AddAsync(comment);
     }
 
-    public void DeleteCommentAsync(Comment comment)
+    public void DeleteComment(Comment comment)
     {
         _context.Comments.Remove(comment);
     }
 
-    public Task<int> SaveChanges()
+    public Task<int> SaveChangesAsync()
     {
         return _context.SaveChangesAsync();
     }

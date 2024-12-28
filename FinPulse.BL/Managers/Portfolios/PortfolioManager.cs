@@ -12,7 +12,7 @@ public class PortfolioManager : IPortfolioManager
     }
     public async Task<List<StockDto>> GetPortfolioAsync(string userId)
     {
-        List<Stock> stocks = await _portfolioRepo.GetPortfolio(userId);
+        List<Stock> stocks = await _portfolioRepo.GetPortfolioStocksAsync(userId);
         
         List<StockDto> stocksDto = stocks.Select(stock => new StockDto
         {
@@ -38,6 +38,18 @@ public class PortfolioManager : IPortfolioManager
 
     public async Task<Portfolio> AddStockToPortfolioAsync(Portfolio portfolio)
     {
-        return await _portfolioRepo.AddStockToPortfolio(portfolio);
+        var portfolioAdded = await _portfolioRepo.AddStockToPortfolioAsync(portfolio);
+        await _portfolioRepo.SaveChangesAsync();
+        return portfolioAdded;
+    }
+
+    public async Task<bool> RemoveStockFromPortfolioAsync(string userId, string symbol)
+    {
+        var portfolioToRemove = await _portfolioRepo.GetPortfolioAsync(userId, symbol);
+        if(portfolioToRemove == null) return false;
+        
+        _portfolioRepo.RemoveStockFromPortfolio(portfolioToRemove);
+        
+        return await _portfolioRepo.SaveChangesAsync() > 0;
     }
 }

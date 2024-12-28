@@ -10,6 +10,6 @@ public interface IStockRepo
 
     void UpdateStockAsync(Stock stock);
 
-    void DeleteStockAsync(Stock stock);
-    Task<int> SaveChanges();
+    void DeleteStock(Stock stock);
+    Task<int> SaveChangesAync();
 }

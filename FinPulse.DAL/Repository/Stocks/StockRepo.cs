@@ -65,13 +65,13 @@ public class StockRepo : IStockRepo
        // _context.Update(stock);
     }
 
-    public void DeleteStockAsync(Stock stock)
+    public void DeleteStock(Stock stock)
     {
         _context.Stocks.Remove(stock);
     }
 
 
-    public async Task<int> SaveChanges()
+    public async Task<int> SaveChangesAync()
     {
         return await _context.SaveChangesAsync();
     }
