@@ -11,7 +11,7 @@ namespace FinPulse.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class CommentController(ICommentManager commentManager, IStockManager stockManager, UserManager<AppUser> userManager) : ControllerBase
+    public class CommentController(ICommentManager commentManager, IStockManager stockManager) : ControllerBase
     {
         #region GetComments
 

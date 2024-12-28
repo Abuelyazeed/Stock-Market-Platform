@@ -10,7 +10,7 @@ namespace FinPulse.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class PortfolioController(UserManager<AppUser> userManager, IPortfolioManager portfolioManager, IStockRepo stockRepo) : ControllerBase
+    public class PortfolioController(IPortfolioManager portfolioManager, IStockRepo stockRepo) : ControllerBase
     {
 
         [HttpGet]
