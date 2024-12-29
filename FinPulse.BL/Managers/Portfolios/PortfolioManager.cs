@@ -36,8 +36,14 @@ public class PortfolioManager : IPortfolioManager
         return stocksDto;
     }
 
-    public async Task<Portfolio> AddStockToPortfolioAsync(Portfolio portfolio)
+    public async Task<Portfolio> AddStockToPortfolioAsync(int stockId, string userId)
     {
+        var portfolio = new Portfolio
+        {
+            StockId = stockId,
+            AppUserId = userId
+        };
+        
         var portfolioAdded = await _portfolioRepo.AddStockToPortfolioAsync(portfolio);
         await _portfolioRepo.SaveChangesAsync();
         return portfolioAdded;

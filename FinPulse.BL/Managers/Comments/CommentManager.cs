@@ -6,7 +6,7 @@ public class CommentManager : ICommentManager
 {
     private readonly ICommentRepo _commentRepo;
 
-    public CommentManager(ICommentRepo commentRepo)
+    public CommentManager(ICommentRepo commentRepo, FinPulseContext context)
     {
         _commentRepo = commentRepo;
     }
@@ -51,27 +51,29 @@ public class CommentManager : ICommentManager
         return comment;
     }
 
-    public async Task<CommentDto> CreateCommentAsync(int stockId, CommentCreateDto createdComment,string userId)
+    public async Task<CommentDto> CreateCommentAsync(int stockId, string userId, CommentCreateDto createdComment)
     {
-        Comment commentFromDb = new Comment()
+        Comment commentToCreate = new Comment()
         {
             Title = createdComment.Title,
             Content = createdComment.Content,
-            CreatedOn = DateTime.Now,
+            CreatedOn = DateTime.UtcNow,
             StockId = stockId,
             AppUserId = userId
         };
         
-        await _commentRepo.CreateCommentAsync(commentFromDb);
+        await _commentRepo.CreateCommentAsync(commentToCreate);
         await _commentRepo.SaveChangesAsync();
+        
+        var commentFromDb = await _commentRepo.GetCommentAsync(commentToCreate.Id);
         
         CommentDto commentDto = new CommentDto()
         {
-            Id = commentFromDb.Id,
+            Id = commentFromDb!.Id,
             Title = commentFromDb.Title,
             Content = commentFromDb.Content,
             CreatedOn = commentFromDb.CreatedOn,
-            CreatedBy = commentFromDb.AppUser!.UserName,
+            CreatedBy = commentFromDb.AppUser?.UserName,
             StockId = commentFromDb.StockId,
         };
         
@@ -93,6 +95,7 @@ public class CommentManager : ICommentManager
             Title = commentFromDb.Title,
             Content = commentFromDb.Content,
             CreatedOn = commentFromDb.CreatedOn,
+            CreatedBy = commentFromDb.AppUser?.UserName,
             StockId = commentFromDb.StockId,
         };
     }

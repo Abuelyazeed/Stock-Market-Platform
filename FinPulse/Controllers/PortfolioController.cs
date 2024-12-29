@@ -1,8 +1,5 @@
 using FinPulse.BL;
-using FinPulse.DAL;
-using FinPulse.Extentions;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinPulse.Controllers
@@ -10,7 +7,7 @@ namespace FinPulse.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class PortfolioController(IPortfolioManager portfolioManager, IStockRepo stockRepo) : ControllerBase
+    public class PortfolioController(IPortfolioManager portfolioManager, IStockManager stockManager) : ControllerBase
     {
 
         [HttpGet]
@@ -26,10 +23,20 @@ namespace FinPulse.Controllers
         public async Task<ActionResult> AddStockToPortfolio(string symbol)
         {
             var userId = User.getUserId();
-            var stock = await stockRepo.GetStockBySymbol(symbol);
             
-            if(stock == null) return BadRequest("Stock not found");
+            //get stock
+            var stock = await stockManager.GetStockBySymbolAsync(symbol);
             
+            //stock does not exist so get it from external api
+            if (stock == null)
+            {
+                stock = await stockManager.EnsureStockExistsAsync(symbol);
+                if (stock == null)
+                {
+                    return BadRequest("Stock does not exist.");
+                }
+            }
+             
             //Get user portfolio to check if stock already exists there
             var userPortfolio = await portfolioManager.GetPortfolioAsync(userId);
 
@@ -38,13 +45,7 @@ namespace FinPulse.Controllers
                 return BadRequest("Stock already exists");
             }
 
-            var addPortfolio = new Portfolio
-            {
-                StockId = stock.Id,
-                AppUserId = userId
-            };
-
-            var portfolio = await portfolioManager.AddStockToPortfolioAsync(addPortfolio);
+            var portfolio = await portfolioManager.AddStockToPortfolioAsync(stock.Id, userId);
             
             return Created();
 

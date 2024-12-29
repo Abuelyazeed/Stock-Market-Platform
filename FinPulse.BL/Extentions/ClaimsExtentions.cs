@@ -1,6 +1,6 @@
 using System.Security.Claims;
 
-namespace FinPulse.Extentions;
+namespace FinPulse.BL;
 
 public static class ClaimsExtentions
 {

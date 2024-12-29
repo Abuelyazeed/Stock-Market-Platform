@@ -8,14 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b26f06ac-6a19-4e6d-920d-e3b1764a6295" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/FinPulse.BL/Managers/Portfolios/IPortfolioManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinPulse.BL/Managers/Portfolios/PortfolioManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinPulse.DAL/Repository/Portfolios/IPortfolioRepo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinPulse.DAL/Repository/Portfolios/PortfolioRepo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FinPulse/Extentions/ClaimsExtentions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FinPulse/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FinPulse/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="b26f06ac-6a19-4e6d-920d-e3b1764a6295" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -141,7 +134,7 @@
       <workItem from="1734869583779" duration="12148000" />
       <workItem from="1735214610033" duration="243000" />
       <workItem from="1735214863534" duration="7564000" />
-      <workItem from="1735304288974" duration="3589000" />
+      <workItem from="1735304288974" duration="15323000" />
     </task>
     <servers />
   </component>

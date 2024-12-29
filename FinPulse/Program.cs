@@ -48,6 +48,13 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 
 #endregion
 
+#region Fmp Service
+
+builder.Services.AddScoped<IFmpService, FmpService>();
+builder.Services.AddHttpClient<IFmpService, FmpService>();
+
+#endregion
+
 #region Identity
 
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
@@ -56,7 +63,6 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
         options.Password.RequireLowercase = true;
         options.Password.RequireUppercase = true;
         options.Password.RequireNonAlphanumeric = true;
-        options.Password.RequiredLength = 12;
     })
     .AddEntityFrameworkStores<FinPulseContext>();
 

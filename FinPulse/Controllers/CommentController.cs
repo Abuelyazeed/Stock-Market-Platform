@@ -1,8 +1,6 @@
 using FinPulse.BL;
 using FinPulse.DAL;
-using FinPulse.Extentions;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,7 +9,7 @@ namespace FinPulse.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class CommentController(ICommentManager commentManager, IStockManager stockManager) : ControllerBase
+    public class CommentController(UserManager<AppUser> userManager, ICommentManager commentManager, IStockManager stockManager) : ControllerBase
     {
         #region GetComments
 
@@ -42,20 +40,27 @@ namespace FinPulse.Controllers
         #region CreateComment
 
         [HttpPost]
-        [Route("{stockId:int}")]
-        public async Task<ActionResult> CreateComment(int stockId,CommentCreateDto comment)
+        [Route("{symbol}")]
+        public async Task<ActionResult> CreateComment(string symbol,CommentCreateDto comment)
         {
             //get user
             var userId = User.getUserId();
+
+            //get stock
+            var stock = await stockManager.GetStockBySymbolAsync(symbol);
             
-            
-            var stock = await stockManager.GetStockAsync(stockId);
+            //stock does not exist so get it from external api
             if (stock == null)
             {
-                return NotFound("Stock does not exist");
+                stock = await stockManager.EnsureStockExistsAsync(symbol);
+                if (stock == null)
+                {
+                    return BadRequest("Stock does not exist.");
+                }
             }
             
-            var createdComment = await commentManager.CreateCommentAsync(stockId, comment, userId);
+            
+            var createdComment = await commentManager.CreateCommentAsync(stock.Id, userId, comment);
             return CreatedAtAction(nameof(GetComment), new { id = createdComment.Id }, createdComment);
         }
 
