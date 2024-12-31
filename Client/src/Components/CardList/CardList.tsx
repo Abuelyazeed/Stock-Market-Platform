@@ -1,7 +1,8 @@
+import React from 'react';
 import Card from '../Card/Card';
 
 interface Props {}
-function CardList({}: Props) {
+const CardList: React.FC<Props> = ({}: Props): JSX.Element => {
   return (
     <div>
       <Card companyName={'Apple'} ticker={'AAPL'} price={100} />
@@ -9,5 +10,5 @@ function CardList({}: Props) {
       <Card companyName={'Apple'} ticker={'AAPL'} price={100} />
     </div>
   );
-}
+};
 export default CardList;
