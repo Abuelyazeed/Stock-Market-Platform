@@ -11,9 +11,22 @@ public class CommentRepo : ICommentRepo
         _context = context;
     }
     
-    public async Task<List<Comment>> GetCommentsAsync()
+    public async Task<List<Comment>> GetCommentsAsync(CommentParams commentParams)
     {
-        return await _context.Comments.Include(x => x.AppUser).ToListAsync();
+        var comments = _context.Comments.Include(x => x.AppUser).AsQueryable();
+        
+        //Filter byy symbol
+        if (!string.IsNullOrWhiteSpace(commentParams.Symbol))
+        {
+            comments = comments.Where(c => c.Stock!.Symbol.ToLower() == commentParams.Symbol.ToLower());
+        }
+
+        //sort
+        if (commentParams.IsDecsending)
+        {
+            comments = comments.OrderByDescending(c => c.CreatedOn);
+        }
+        return await comments.ToListAsync();
     }
 
     public async Task<Comment?> GetCommentAsync(int id)

@@ -14,9 +14,9 @@ namespace FinPulse.Controllers
         #region GetComments
 
         [HttpGet]
-        public async Task<ActionResult> GetComments()
+        public async Task<ActionResult> GetComments([FromQuery] CommentParams commentParams)
         {
-            var comments = await commentManager.GetCommentsAsync();
+            var comments = await commentManager.GetCommentsAsync(commentParams);
             
             return Ok(comments);
         }

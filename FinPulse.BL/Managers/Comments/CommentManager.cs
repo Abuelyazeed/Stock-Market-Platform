@@ -11,9 +11,9 @@ public class CommentManager : ICommentManager
         _commentRepo = commentRepo;
     }
 
-    public async Task<List<CommentDto>> GetCommentsAsync()
+    public async Task<List<CommentDto>> GetCommentsAsync(CommentParams commentParams)
     {
-        List<Comment> comments = await _commentRepo.GetCommentsAsync();
+        List<Comment> comments = await _commentRepo.GetCommentsAsync(commentParams);
 
         List<CommentDto> commentsDto = comments.Select(comment => new CommentDto
         {

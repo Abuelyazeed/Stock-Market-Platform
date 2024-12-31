@@ -15,7 +15,7 @@ public class PortfolioRepo : IPortfolioRepo
     {
         return await _context.Portfolios.Where(x => x.AppUserId == userId)
             .Include(x => x.Stock)
-            .ThenInclude(x => x.Comments)
+            .ThenInclude(x => x!.Comments)
             .Select(x => x.Stock)
             .ToListAsync();
     }
@@ -23,7 +23,7 @@ public class PortfolioRepo : IPortfolioRepo
     public async Task<Portfolio?> GetPortfolioAsync(string userId, string symbol)
     {
         var portfolio = await _context.Portfolios
-            .FirstOrDefaultAsync(x => x.AppUserId == userId && x.Stock.Symbol.ToLower() == symbol.ToLower());
+            .FirstOrDefaultAsync(x => x.AppUserId == userId && x.Stock!.Symbol.ToLower() == symbol.ToLower());
         if (portfolio == null) return null;
 
         return portfolio;
