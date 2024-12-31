@@ -1,13 +1,20 @@
 import './Card.css';
 
-interface Props {}
-function Card({}: Props) {
+interface Props {
+  companyName: string;
+  ticker: string;
+  price: number;
+}
+
+function Card({ companyName, ticker, price }: Props) {
   return (
     <div className="card">
       <p>FinPulse</p>
       <div className="details">
-        <h2>AAPL</h2>
-        <p>$110</p>
+        <h2>
+          {companyName} ({ticker})
+        </h2>
+        <p>${price}</p>
       </div>
       <p className="info">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit,
