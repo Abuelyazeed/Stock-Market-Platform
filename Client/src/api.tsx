@@ -22,7 +22,11 @@ export const searchCompanies = async (query: string) => {
     const data: SearchResponse = await response.json();
     return data;
   } catch (error) {
-    console.error('Error message:', error);
-    return error;
+    if (error instanceof Error) {
+      console.error('Error message:', error.message);
+      return error.message;
+    }
+    console.error('Unknown error:', error);
+    return 'An unknown error occurred.';
   }
 };

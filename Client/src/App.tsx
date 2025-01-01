@@ -17,7 +17,7 @@ function App() {
   const onClick = async (e: SyntheticEvent) => {
     const result = await searchCompanies(search);
     if (typeof result === 'string') {
-      setServerError(result);
+      setServerError('Failed to fetch companies. Please try again.');
     } else if (Array.isArray(result)) {
       setSearchResult(result);
     }
@@ -27,6 +27,8 @@ function App() {
   return (
     <>
       <Search onClick={onClick} handleChange={handleChange} search={search} />
+      {serverError && <h1>Server Error</h1>}
+
       <CardList />
     </>
   );
