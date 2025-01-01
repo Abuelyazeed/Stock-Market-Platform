@@ -27,9 +27,8 @@ function App() {
   return (
     <>
       <Search onClick={onClick} handleChange={handleChange} search={search} />
-      {serverError && <h1>Server Error</h1>}
-
-      <CardList />
+      <CardList searchResults={searchResult} />
+      {serverError && <div>Unable to connect to API</div>}
     </>
   );
 }
