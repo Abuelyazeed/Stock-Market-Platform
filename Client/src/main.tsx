@@ -4,7 +4,6 @@ import './index.css';
 import App from './App.tsx';
 import { searchCompanies } from './api.tsx';
 
-console.log(searchCompanies('tsla'));
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />
