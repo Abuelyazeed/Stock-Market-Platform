@@ -33,6 +33,14 @@ function App() {
     setPortfolioValues(updatedPortfolio);
   };
 
+  const onStockDelete = (e: any) => {
+    e.preventDefault();
+    const removedStock = portfolioValues.filter((value) => {
+      return value != e.target[0].value;
+    });
+    setPortfolioValues(removedStock);
+  };
+
   return (
     <>
       <Search
@@ -40,7 +48,10 @@ function App() {
         handleSearchChange={handleSearchChange}
         search={search}
       />
-      <ListPortfolio portfolioValues={portfolioValues} />
+      <ListPortfolio
+        portfolioValues={portfolioValues}
+        onStockDelete={onStockDelete}
+      />
       <CardList searchResults={searchResult} onStockAdd={onStockAdd} />
       {serverError && <div>Unable to connect to API</div>}
     </>
