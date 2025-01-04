@@ -2,6 +2,9 @@ import { useParams } from 'react-router';
 import { CompanyProfile } from '../../company';
 import { useEffect, useState } from 'react';
 import { getCompanyProfile } from '../../api';
+import SideBar from '../../Components/SideBar/SideBar';
+import CompanyDashboard from '../../Components/CompanyDashboard/CompanyDashboard';
+import Tile from '../../Components/Tile/Tile';
 
 interface Props {}
 const CompanyPage = (props: Props) => {
@@ -22,9 +25,15 @@ const CompanyPage = (props: Props) => {
   return (
     <>
       {company ? (
-        <div>{company.companyName}</div>
+        <div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
+          <SideBar />
+
+          <CompanyDashboard>
+            <Tile title="Company Name" subTitle={company.companyName} />
+          </CompanyDashboard>
+        </div>
       ) : (
-        <div>Company not found</div>
+        <div>Company not found.</div>
       )}
     </>
   );
