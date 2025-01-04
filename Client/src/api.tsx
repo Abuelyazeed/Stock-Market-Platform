@@ -1,4 +1,4 @@
-import { CompanySearch } from './company';
+import { CompanyProfile, CompanySearch } from './company';
 
 interface SearchResponse {
   data: CompanySearch[];
@@ -28,5 +28,27 @@ export const searchCompanies = async (query: string) => {
     }
     console.error('Unknown error:', error);
     return 'An unknown error occurred.';
+  }
+};
+
+export const getCompanyProfile = async (query: string) => {
+  try {
+    const apiKey = import.meta.env.VITE_API_KEY;
+    if (!apiKey) {
+      throw new Error('API key is missing.');
+    }
+
+    const response = await fetch(
+      `https://financialmodelingprep.com/api/v3/profile/${query}?apikey=${apiKey}`
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data: CompanyProfile[] = await response.json();
+    return data;
+  } catch (error: any) {
+    console.log('error message: ', error.message);
   }
 };
